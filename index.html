@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Virat Snooker Zone</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="logo">
+
+                <img src="assets/virat-logo.jpg" alt="Virat Snooker Zone">
+
+                <div class="logo-text">
+
+                    <h2>Virat Snooker Zone</h2>
+
+                    <p>Food • Drinks • Snooker</p>
+
+                </div>
+
+            </div>
+
+            <div class="cart-icon">
+
+                🛒
+
+                <span id="cartCount">0</span>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+
+            <h1>Welcome To</h1>
+
+            <h2>Virat Snooker Zone</h2>
+
+            <p>
+
+                Delicious Food • Refreshing Drinks • Premium Snooker
+
+            </p>
+
+            <a href="#menu" class="menu-btn">
+
+                Explore Menu
+
+                <i class="fa-solid fa-arrow-down"></i>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- ================= SEARCH ================= -->
+
+    <section class="search-section">
+
+        <div class="search-container">
+
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+
+            <input
+                type="text"
+                id="search"
+                placeholder="Search your favourite food...">
+
+            <div id="suggestions" class="suggestions"></div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= CATEGORIES ================= -->
+
+    <section class="categories">
+
+        <button class="category-btn active" data-category="All">
+
+            🍽️ All
+
+        </button>
+
+        <button class="category-btn" data-category="Food">
+
+            🍔 Food
+
+        </button>
+
+        <button class="category-btn" data-category="Drinks">
+
+            ☕ Drinks
+
+        </button>
+
+        <button class="category-btn" data-category="Milk Shakes">
+
+            🥤 Milk Shakes
+
+        </button>
+
+    </section>
+
+    <!-- ================= MENU ================= -->
+
+    <section class="menu-section" id="menu">
+
+        <div class="section-title">
+
+            <h2>🔥 Popular Items</h2>
+
+            <p>Freshly Prepared Everyday</p>
+
+        </div>
+
+        <div id="products" class="product-grid">
+
+            <!-- Products Load Here -->
+
+        </div>
+
+    </section>
+
+    <!-- ================= TODAY SPECIAL ================= -->
+
+    <section class="today-special">
+
+        <div class="special-card">
+
+            <h2>🔥 Today's Special</h2>
+
+            <h3>Chicken Nuggets</h3>
+
+            <p>
+
+                Crispy Chicken Nuggets with Fresh Dip
+
+            </p>
+
+            <span>
+
+                Only ₹100
+
+            </span>
+
+        </div>
+
+    </section>
+
+    <!-- ================= CART SIDEBAR ================= -->
+
+    <div id="cartSidebar" class="cart-sidebar">
+
+        <div class="cart-header">
+
+            <h2>🛒 Your Cart</h2>
+
+            <span id="closeCart">&times;</span>
+
+        </div>
+
+        <div id="cartItems" class="cart-items">
+
+            <p>Your cart is empty.</p>
+
+        </div>
+
+        <div class="cart-footer">
+
+            <h3>
+
+                Total : ₹<span id="cartTotal">0</span>
+
+            </h3>
+
+            <button
+                class="checkout-btn"
+                onclick="placeOrder()">
+
+                📲 Order on WhatsApp
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ================= PRODUCT MODAL ================= -->
+
+    <div id="productModal" class="modal">
+
+        <div class="modal-content">
+
+            <span id="closeModal">&times;</span>
+
+            <img
+                id="modalImage"
+                src=""
+                alt="Product">
+
+            <h2 id="modalName"></h2>
+
+            <p id="modalDescription"></p>
+
+            <div class="modal-info">
+
+                <span id="modalRating"></span>
+
+                <span id="modalPrice"></span>
+
+            </div>
+
+            <button id="modalAddBtn">
+
+                Add To Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <! === Contact ===>
+    <section class="contact-section">
+        <div class="secction-title">
+            <h2>📍 Visit Us</h2>
+
+            <p>We're waiting to serve you!</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-card">
+                <h3>📍 Address</h3>
+                <p>
+                    Virat Snooker Zone<br>
+                    Kashmeergadda,Karimnagar
+                </p>
+            </div>
+            <div class="contact-card">
+                <h3>📞 Phone</h3>
+                <p>
+                    1234567890
+                </p>
+                <div class="contact-card">
+                    <h3>🕒 Opening Hours</h3>
+                    <p>
+                        10.00 AM - 11:00 PM
+                    </p>
+                </div>
+            </div>
+            <div class="contact-buttons">
+                <a href="tel:+123467896" class="contact-btn">
+                    📞 Call Now
+                </a>
+                <a href="https://maps.google.com" target="_blank" class="contact-btn">
+                    📍 View on Map
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!--=== Order Success Modal===-->
+
+    <div id="orderModal" class="order-modal">
+        <div class="order-modal-content">
+            <div class="success-icon">✅</div>
+
+            <h2>Order Ready!</h2>
+            <p>
+                Your order is ready to be sent on WhatsApp.
+            </p>
+            <button id="continueOrder">
+                Continue to WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- ================= ABOUT US ================= -->
+
+    <section class="about-section">
+
+      <div class="about-content">
+
+        <div class="about-text">
+
+            <h2>About Virat Snooker Zone</h2>
+
+            <p>
+
+                Welcome to <strong>Virat Snooker Zone</strong>, your destination
+                for delicious food, refreshing drinks, tasty milkshakes, and
+                exciting snooker games.
+
+            </p>
+
+            <p>
+
+                We believe in serving fresh food with excellent quality and
+                providing a fun, comfortable place where friends and families
+                can relax and enjoy their time together.
+
+            </p>
+
+            <div class="about-features">
+
+                <div class="feature">
+                    🍔 Fresh Food
+                </div>
+
+                <div class="feature">
+                    🥤 Cold Drinks
+                </div>
+
+                <div class="feature">
+                    🎱 Premium Snooker
+                </div>
+
+                <div class="feature">
+                    ❤️ Friendly Service
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="about-image">
+
+            <img src="assets/about.jpg" alt="Virat Snooker Zone">
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ================= BUSINESS STATS ================= -->
+
+    <section class="stats-section">
+
+    <div class="section-title">
+
+        <h2>Our Achievements</h2>
+
+        <p>Serving our customers with quality and passion</p>
+
+    </div>
+
+    <div class="stats-container">
+
+        <div class="stat-card">
+
+            <h2>5000+</h2>
+
+            <p>Orders Served</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h2>2500+</h2>
+
+            <p>Happy Customers</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h2>4.9 ⭐</h2>
+
+            <p>Average Rating</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h2>3+</h2>
+
+            <p>Years Experience</p>
+
+        </div>
+
+    </div>
+
+    </section>
+    <!-- ================= GALLERY ================= -->
+
+    <section class="gallery-section">
+
+    <div class="section-title">
+
+        <h2>📸 Our Gallery</h2>
+
+        <p>Take a look at our food, drinks and snooker zone.</p>
+
+    </div>
+
+    <div class="gallery-grid">
+
+        <div class="gallery-item">
+            <img src="assets/gallery1.jpg" alt="Food">
+        </div>
+
+        <div class="gallery-item">
+            <img src="assets/gallery2.jpg" alt="Drink">
+        </div>
+
+        <div class="gallery-item">
+            <img src="assets/gallery3.jpg" alt="Milk Shake">
+        </div>
+
+        <div class="gallery-item">
+            <img src="assets/gallery4.jpg" alt="Snooker">
+        </div>
+
+        <div class="gallery-item">
+            <img src="assets/gallery5.jpg" alt="Restaurant">
+        </div>
+
+        <div class="gallery-item">
+            <img src="assets/gallery6.jpg" alt="Food">
+        </div>
+
+    </div>
+
+    </section>
+
+    <!-- Website Qr===-->
+
+    <section class="qr-section">
+        <h2>📱 Scan to Open Menu</h2>
+
+        <p>Scan the QR code to access our website instantly.</p>
+
+        <div class="qr-card">
+            <img src="assets/website-qr.png" alt="Website Qr Code">
+
+            <p>Virat Snooker Zone</p>
+        </div>
+    </section>
+    <!-- ================= REVIEWS ================= -->
+
+    <section class="reviews">
+
+    <div class="section-title">
+
+        <h2>⭐ Customer Reviews</h2>
+
+        <p>What our customers say</p>
+
+    </div>
+
+    <div class="review-container">
+
+        <div class="review-card">
+
+            <h3>Rahul</h3>
+
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+
+            <p>
+                Amazing food and quick service. The Chicken Nuggets are my favorite!
+            </p>
+
+        </div>
+
+        <div class="review-card">
+
+            <h3>Priya</h3>
+
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+
+            <p>
+                Oreo Shake was delicious. The ordering process is very easy.
+            </p>
+
+        </div>
+
+        <div class="review-card">
+
+            <h3>Arjun</h3>
+
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+
+            <p>
+                Best place to enjoy snacks and play snooker with friends.
+            </p>
+
+        </div>
+
+     </div>
+
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <h3>Virat Snooker Zone</h3>
+
+            <p>
+
+                Thank you for visiting ❤️
+
+            </p>
+
+            <small>
+
+                © 2026 Virat Snooker Zone. All Rights Reserved.
+
+            </small>
+
+        </div>
+
+    </footer>
+
+    <!-- ================= SCROLL TO TOP ================= -->
+
+    <button id="scrollTopBtn" title="Go to Top">
+
+    <i class="fa-solid fa-arrow-up"></i>
+
+    </button>
+
+    <script src="script.js"></script>
+
+</body>
+<!-- ================= LOADER ================= -->
+
+<div id="loader">
+
+    <div class="loader-content">
+
+        <img src="assets/virat-logo.jpg" alt="Logo">
+
+        <h2>Virat Snooker Zone</h2>
+
+        <div class="spinner"></div>
+
+        <p>Loading...</p>
+
+    </div>
+
+</div>
+
+</html>
