@@ -1557,7 +1557,7 @@ html{
 
     height:260px;
 
-    object-fit:cover;
+    object-fit:contain;
 
     transition:.4s;
 

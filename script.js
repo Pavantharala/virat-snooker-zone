@@ -193,7 +193,7 @@ const products = [
         id: 16,
         name: "Sweet Lassi",
         category: "Milk Shakes",
-        image: "",
+        image: "vassets/Sweet-Lassi1.jpg",
         price: 60,
         rating: 4.9,
         type: "Veg",
