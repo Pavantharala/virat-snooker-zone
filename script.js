@@ -1,7 +1,8 @@
 // =========================================
 // VIRAT SNOOKER ZONE
-// SCRIPT.JS (PART 1)
+// script.js (PART 1)
 // =========================================
+
 
 // =========================================
 // PRODUCTS
@@ -18,19 +19,19 @@ const products = [
         rating: 4.9,
         type: "Non Veg",
         bestseller: true,
-        description: "Crispy Chicken Nuggets"
+        description: "Fresh egg bhurji prepared with onions and spices."
     },
 
     {
         id: 2,
-        name: "French Fries 6-Pcs Plate",
+        name: "French Fries",
         category: "Food",
         image: "assets/french.fries.jpg",
         price: 120,
         rating: 4.8,
         type: "Veg",
         bestseller: false,
-        description: "Golden Crispy Fries"
+        description: "Golden crispy French fries served hot."
     },
 
     {
@@ -42,79 +43,79 @@ const products = [
         rating: 4.8,
         type: "Non Veg",
         bestseller: true,
-        description: "Fresh Chicken Spring Rolls"
+        description: "Crunchy chicken spring rolls with sauce."
     },
 
     {
         id: 4,
         name: "Oreo Shake",
         category: "Milk Shakes",
-        image: "assets/oreo-shake.jpg",
+        image: "assets/Oreo_Milkshake1.jpg",
         price: 80,
         rating: 4.9,
         type: "Veg",
-        bestseller: false,
-        description: "Cold Oreo Milk Shake"
+        bestseller: true,
+        description: "Creamy Oreo milkshake with ice cream."
     },
 
     {
         id: 5,
-        name: "Egg Maggie Noodles Plate",
+        name: "Egg Maggie",
         category: "Food",
         image: "assets/Egg-maggie.jpg",
         price: 100,
         rating: 4.9,
         type: "Non Veg",
         bestseller: false,
-        description: "Crispy Chicken Nuggets"
+        description: "Masala Maggi topped with fresh eggs."
     },
 
     {
         id: 6,
-        name: "Double Egg Omlette",
+        name: "Double Egg Omelette",
         category: "Food",
         image: "assets/Egg-omlette.jpg",
         price: 60,
-        rating: 4.9,
+        rating: 4.8,
         type: "Non Veg",
         bestseller: true,
-        description: "Crispy Chicken Nuggets"
+        description: "Soft double egg omelette with spices."
     },
 
     {
         id: 7,
-        name: "Veg Maggie Noodles 2-Plates",
+        name: "Veg Maggi",
         category: "Food",
         image: "assets/Veg-Masala-Maggi.jpg",
         price: 120,
-        rating: 4.9,
+        rating: 4.8,
         type: "Veg",
         bestseller: true,
-        description: "Crispy Chicken Nuggets"
+        description: "Vegetable Maggi noodles with fresh veggies."
     },
 
     {
         id: 8,
-        name: "Plain Maggie Noodles Plate",
+        name: "Plain Maggi",
         category: "Food",
         image: "assets/plain-maggie.jpg",
         price: 80,
-        rating: 4.9,
+        rating: 4.7,
         type: "Veg",
-        bestseller: true,
-        description: "Crispy Chicken Nuggets"
+        bestseller: false,
+        description: "Classic plain Maggi noodles."
     },
 
     {
         id: 9,
-        name: "Sweet Corn 2-Cups",
+        name: "Sweet Corn",
         category: "Food",
         image: "assets/sweet-corn1.jpg",
         price: 80,
-        rating: 4.9,
+        rating: 4.8,
         type: "Veg",
         bestseller: true,
-        description: "Crispy Chicken Nuggets"
+        description: "Hot butter sweet corn."
     },
 
     {
@@ -124,9 +125,9 @@ const products = [
         image: "assets/chai.jpg",
         price: 20,
         rating: 4.9,
-        type: "Drinks",
+        type: "Veg",
         bestseller: true,
-        description: "Crispy Chicken Nuggets"
+        description: "Hot Indian tea."
     },
 
     {
@@ -135,10 +136,10 @@ const products = [
         category: "Drinks",
         image: "assets/Black-coffeee.jpg",
         price: 20,
-        rating: 4.9,
-        type: "Non Veg",
+        rating: 4.8,
+        type: "Veg",
         bestseller: true,
-        description: "Crispy Chicken Nuggets"
+        description: "Fresh black coffee."
     },
 
     {
@@ -147,10 +148,10 @@ const products = [
         category: "Drinks",
         image: "assets/Milk1.jpg",
         price: 20,
-        rating: 4.9,
-        type: "Drink",
-        bestseller: true,
-        description: "Crispy Chicken Nuggets"
+        rating: 4.8,
+        type: "Veg",
+        bestseller: false,
+        description: "Fresh hot milk."
     },
 
     {
@@ -159,10 +160,10 @@ const products = [
         category: "Drinks",
         image: "assets/Green-tea.jpg",
         price: 20,
-        rating: 4.9,
-        type: "Non Veg",
-        bestseller: true,
-        description: "Crispy Chicken Nuggets"
+        rating: 4.8,
+        type: "Veg",
+        bestseller: false,
+        description: "Healthy green tea."
     },
 
     {
@@ -174,7 +175,7 @@ const products = [
         rating: 4.9,
         type: "Veg",
         bestseller: true,
-        description: "Crispy Chicken Nuggets"
+        description: "Creamy banana milkshake."
     },
 
     {
@@ -186,34 +187,35 @@ const products = [
         rating: 4.9,
         type: "Veg",
         bestseller: true,
-        description: "Crispy Chicken Nuggets"
+        description: "Rich almond milkshake."
     },
 
     {
         id: 16,
         name: "Sweet Lassi",
-        category: "Milk Shakes",
-        image: "vassets/Sweet-Lassi1.jpg",
+        category: "Drinks",
+        image: "assets/git.jpg",
         price: 60,
-        rating: 4.9,
+        rating: 4.8,
         type: "Veg",
         bestseller: true,
-        description: "Crispy Chicken Nuggets"
+        description: "Traditional sweet lassi."
     },
 
     {
         id: 17,
         name: "Lemon Juice",
-        category: "Milk Shakes",
+        category: "Drinks",
         image: "assets/lemon-juice.jpg",
         price: 40,
         rating: 4.9,
         type: "Veg",
         bestseller: true,
-        description: "Crispy Chicken Nuggets"
+        description: "Fresh lemon juice."
     }
 
 ];
+
 
 // =========================================
 // DOM ELEMENTS
@@ -222,14 +224,10 @@ const products = [
 const container = document.getElementById("products");
 const search = document.getElementById("search");
 const suggestions = document.getElementById("suggestions");
-const categoryButtons = document.querySelectorAll(".category-btn");
 
-const cartSidebar = document.getElementById("cartSidebar");
-const cartItems = document.getElementById("cartItems");
-const cartTotal = document.getElementById("cartTotal");
-const cartCount = document.getElementById("cartCount");
-const cartIcon = document.querySelector(".cart-icon");
-const closeCart = document.getElementById("closeCart");
+const categoryButtons = document.querySelectorAll(".category-btn");
+const typeButtons = document.querySelectorAll(".type-btn");
+const typeFilter = document.getElementById("typeFilter");
 
 const modal = document.getElementById("productModal");
 const modalImage = document.getElementById("modalImage");
@@ -240,50 +238,65 @@ const modalPrice = document.getElementById("modalPrice");
 const modalAddBtn = document.getElementById("modalAddBtn");
 const closeModal = document.getElementById("closeModal");
 
-const orderModal = document.getElementById("orderModal");
-const continueOrder = document.getElementById("continueOrder");
 
 // =========================================
-// CART
+// GLOBAL VARIABLES
 // =========================================
 
-let cart = [];
+let selectedCategory = "All";
+let selectedType = "All";
+
 
 // =========================================
 // LOAD PRODUCTS
 // =========================================
 
-function loadProducts(list = products){
+function loadProducts(list = products) {
 
-    container.innerHTML = "";
+    if (!container) return;
 
-    if(list.length === 0){
+    if (list.length === 0) {
 
         container.innerHTML = `
-            <h2 style="text-align:center;padding:40px;">
+            <h2 style="padding:40px;text-align:center;">
                 😔 No Products Found
             </h2>
         `;
 
         return;
-
     }
 
-    list.forEach(product=>{
+    let html = "";
 
-        container.innerHTML += `
+    list.forEach(product => {
+
+        let badge = "";
+
+        if (product.bestseller) {
+            badge = `<span class="tag">🔥 Best Seller</span>`;
+        }
+
+        let typeClass = "";
+
+        if (product.type === "Veg") {
+            typeClass = "veg";
+        } else if (product.type === "Non Veg") {
+            typeClass = "nonveg";
+        }
+
+        html += `
 
         <div class="card">
 
-            <div class="image-box">
+            <div class="image-box"
+                 onclick="openProduct(${product.id})">
 
-                <img src="${product.image}" alt="${product.name}">
+                <img
+                    src="${product.image}"
+                    alt="${product.name}"
+                    onerror="this.src='assets/no-image.png'">
 
-                ${
-                    product.bestseller
-                    ? `<span class="tag">🔥 Best Seller</span>`
-                    : ``
-                }
+                ${badge}
 
             </div>
 
@@ -293,31 +306,26 @@ function loadProducts(list = products){
 
                     <h3>${product.name}</h3>
 
-                    <span class="${
-                        product.type==="Veg"
-                        ? "veg"
-                        : "nonveg"
-                    }"></span>
+                    ${
+                        typeClass
+                        ? `<span class="${typeClass}"></span>`
+                        : ""
+                    }
 
                 </div>
 
                 <p>${product.description}</p>
 
                 <div class="rating">
-
                     ⭐ ${product.rating}
-
                 </div>
 
                 <div class="bottom">
 
                     <h2>₹${product.price}</h2>
 
-                    <button
-                        onclick="addToCart(${product.id})">
-
-                        Add
-
+                    <button onclick="addToCart(${product.id})">
+                        🛒 Add To Cart
                     </button>
 
                 </div>
@@ -330,64 +338,163 @@ function loadProducts(list = products){
 
     });
 
+    container.innerHTML = html;
+
 }
 
 loadProducts();
+
+
+// =========================================
+// FILTER PRODUCTS
+// =========================================
+
+function filterProducts() {
+
+    let filtered = [...products];
+
+    if (selectedCategory !== "All") {
+
+        filtered = filtered.filter(product =>
+            product.category === selectedCategory
+        );
+
+    }
+
+    if (selectedType !== "All") {
+
+        filtered = filtered.filter(product =>
+            product.type === selectedType
+        );
+
+    }
+
+    const keyword = search.value.trim().toLowerCase();
+
+    if (keyword !== "") {
+
+        filtered = filtered.filter(product =>
+
+            product.name.toLowerCase().includes(keyword) ||
+
+            product.description.toLowerCase().includes(keyword)
+
+        );
+
+    }
+
+    loadProducts(filtered);
+
+}
+
+
+// =========================================
+// CATEGORY FILTER
+// =========================================
+
+categoryButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        categoryButtons.forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+        button.classList.add("active");
+
+        selectedCategory = button.dataset.category;
+
+        selectedType = "All";
+
+        typeButtons.forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+        if (
+            selectedCategory === "Food" ||
+            selectedCategory === "All"
+        ) {
+
+            typeFilter.style.display = "flex";
+
+        } else {
+
+            typeFilter.style.display = "none";
+
+        }
+
+        filterProducts();
+
+    });
+
+});
+
+
+// =========================================
+// VEG / NON VEG FILTER
+// =========================================
+
+typeButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        typeButtons.forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+        button.classList.add("active");
+
+        selectedType = button.dataset.type;
+
+        filterProducts();
+
+    });
+
+});
+
 
 // =========================================
 // SEARCH
 // =========================================
 
-search.addEventListener("input", function () {
+search.addEventListener("input", () => {
 
-    const value = this.value.toLowerCase().trim();
+    filterProducts();
+
+    const keyword = search.value.toLowerCase().trim();
 
     suggestions.innerHTML = "";
 
-    if (value === "") {
+    if (keyword === "") {
 
         suggestions.style.display = "none";
-        loadProducts(products);
         return;
 
     }
 
-    const filtered = products.filter(product =>
+    const result = products.filter(product =>
 
-        product.name.toLowerCase().includes(value) ||
-
-        product.description.toLowerCase().includes(value) ||
-
-        product.category.toLowerCase().includes(value) ||
-
-        product.type.toLowerCase().includes(value)
+        product.name.toLowerCase().includes(keyword)
 
     );
 
-    loadProducts(filtered);
+    if (result.length === 0) {
 
-    if (filtered.length === 0) {
-
-        suggestions.innerHTML = `
-            <div class="suggestion-item">
-                😔 No Products Found
-            </div>
-        `;
+        suggestions.innerHTML =
+            `<div class="suggestion-item">No Products Found</div>`;
 
     } else {
 
-        filtered.forEach(product => {
+        result.forEach(product => {
 
             suggestions.innerHTML += `
 
-                <div class="suggestion-item"
-                    onclick="selectProduct('${product.name}')">
+            <div class="suggestion-item"
+                 onclick="selectProduct('${product.name}')">
 
-                    <span>${product.name}</span>
+                ${product.name}
 
-                    <span>₹${product.price}</span>
-
-                </div>
+            </div>
 
             `;
 
@@ -399,296 +506,55 @@ search.addEventListener("input", function () {
 
 });
 
+
 // =========================================
 // SELECT PRODUCT
 // =========================================
 
-function selectProduct(name){
+function selectProduct(name) {
 
     search.value = name;
 
     suggestions.style.display = "none";
 
-    const filtered = products.filter(product=>product.name===name);
-
-    loadProducts(filtered);
+    filterProducts();
 
 }
 
+
 // =========================================
-// HIDE SUGGESTIONS
+// CLOSE SUGGESTIONS
 // =========================================
 
-document.addEventListener("click",function(e){
+document.addEventListener("click", e => {
 
-    if(!e.target.closest(".search-container")){
+    if (!e.target.closest(".search-container")) {
 
-        suggestions.style.display="none";
+        suggestions.style.display = "none";
 
     }
 
 });
 
-// =========================================
-// CATEGORY FILTER
-// =========================================
-
-categoryButtons.forEach(button=>{
-
-    button.addEventListener("click",function(){
-
-        categoryButtons.forEach(btn=>btn.classList.remove("active"));
-
-        this.classList.add("active");
-
-        const category=this.dataset.category;
-
-        search.value="";
-
-        suggestions.style.display="none";
-
-        if(category==="All"){
-
-            loadProducts(products);
-
-            return;
-
-        }
-
-        const filtered=products.filter(product=>product.category===category);
-
-        loadProducts(filtered);
-
-    });
-
-});
-
-// =========================================
-// ADD TO CART
-// =========================================
-
-function addToCart(id){
-
-    const product=products.find(item=>item.id===id);
-
-    const existing=cart.find(item=>item.id===id);
-
-    if(existing){
-
-        existing.quantity++;
-
-    }else{
-
-        cart.push({
-
-            ...product,
-
-            quantity:1
-
-        });
-
-    }
-
-    updateCart();
-
-}
-
-// =========================================
-// UPDATE CART
-// =========================================
-
-function updateCart(){
-
-    cartItems.innerHTML="";
-
-    let totalItems = 0;
-
-    let totalPrice = 0;
-
-    if(cart.length === 0){
-
-        cartItems.innerHTML = "<p>Your cart is empty.</p>";
-        cartCount.innerText = 0;
-        cartTotal.innerText = 0;
-        return;
-
-    }
-
-    cart.forEach(item=>{
-
-        totalItems += item.quantity;
-
-        totalPrice += item.price*item.quantity;
-
-        cartItems.innerHTML += `
-
-        <div class="cart-item">
-
-        <div class="cart-info">
-
-            <h4>${item.name}</h4>
-
-            <p>₹${item.price}</p>
-
-        </div>
-
-        <div class="quantity-box">
-
-         <button onclick="decreaseQuantity(${item.id})">−</button>
-
-         <span>${item.quantity}</span>
-
-         <button onclick="increaseQuantity(${item.id})">+</button>
-
-        </div>
-
-        <h4>
-            ₹${item.price * item.quantity}
-        </h4>
-
-        </div>
-
-    `;
-
-
-    });
-
-    cartCount.innerText = totalItems;
-
-    cartTotal.innerText = totalPrice;
-
-}
-
-// =========================================
-// OPEN CART
-// =========================================
-
-cartIcon.addEventListener("click",()=>{
-
-    cartSidebar.classList.add("active");
-
-});
-
-// =========================================
-// CLOSE CART
-// =========================================
-
-closeCart.addEventListener("click",()=>{
-
-    cartSidebar.classList.remove("active");
-
-});
-
-// Increase Quantity
-
-function increaseQuantity(id){
-
-    const item = cart.find(product => product.id === id);
-
-    if(item){
-        item.quantity++;
-
-    }
-    updateCart();
-}
-
-//Decrease Quantity
-function decreaseQuantity(id){
-    const item = cart.find(product => product.id === id);
-    if(!item) return;
-    item.quantity--;
-    if(item.quantity <= 0){
-        cart = cart.filter(product => product.id !== id);
-    }
-    updateCart();
-}
-
-// =========================================
-// WHATSAPP ORDER
-// =========================================
-
-function placeOrder() {
-
-    if (cart.length === 0) {
-
-        alert("Your cart is empty!");
-
-        return;
-
-    }
-
-    // Show confirmation modal
-    orderModal.classList.add("active");
-
-}
-
-// =========================================
-// CONTINUE TO WHATSAPP
-// =========================================
-
-continueOrder.addEventListener("click", () => {
-
-    let message = "🍽️ *Virat Snooker Zone Order*%0A%0A";
-
-    message += "Hello! I would like to place the following order:%0A%0A";
-
-    let total = 0;
-
-    cart.forEach(item => {
-
-        const amount = item.price * item.quantity;
-
-        total += amount;
-
-        message += `🍔 ${item.name}%0A`;
-        message += `   Qty : ${item.quantity}%0A`;
-        message += `   Price : ₹${item.price}%0A`;
-        message += `   Amount : ₹${amount}%0A%0A`;
-
-    });
-
-    message += "----------------------------%0A";
-    message += `💰 Total : ₹${total}%0A`;
-    message += "----------------------------%0A%0A";
-    message += "Thank You 😊";
-
-    // Replace with your WhatsApp number
-    const phone = "918341924117";
-
-    window.open(
-        `https://wa.me/${phone}?text=${message}`,
-        "_blank"
-    );
-
-    // Close the confirmation popup
-    orderModal.classList.remove("active");
-
-    // Close the cart sidebar
-    cartSidebar.classList.remove("active");
-
-    // Clear the cart
-    cart = [];
-
-    // Update the cart UI
-    updateCart();
-
-    // Optional success message
-    alert("Thank you! Your order has been sent to WhatsApp.");
-
-});
 
 // =========================================
 // PRODUCT POPUP
 // =========================================
 
-function openProduct(id){
+function openProduct(id) {
 
     const product = products.find(item => item.id === id);
 
+    if (!product) return;
+
     modalImage.src = product.image;
+
     modalName.innerText = product.name;
+
     modalDescription.innerText = product.description;
+
     modalRating.innerText = "⭐ " + product.rating;
+
     modalPrice.innerText = "₹" + product.price;
 
     modalAddBtn.onclick = () => {
@@ -709,9 +575,9 @@ closeModal.addEventListener("click", () => {
 
 });
 
-window.addEventListener("click", (e) => {
+window.addEventListener("click", e => {
 
-    if(e.target === modal){
+    if (e.target === modal) {
 
         modal.classList.remove("active");
 
@@ -720,36 +586,561 @@ window.addEventListener("click", (e) => {
 });
 
 // =========================================
-// SCROLL TO TOP
+// CART
 // =========================================
 
-const scrollTopBtn = document.getElementById("scrollTopBtn");
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-window.addEventListener("scroll", () => {
+const cartSidebar = document.getElementById("cartSidebar");
+const cartItems = document.getElementById("cartItems");
+const cartTotal = document.getElementById("cartTotal");
+const cartCount = document.getElementById("cartCount");
+const cartIcon = document.querySelector(".cart-icon");
+const closeCart = document.getElementById("closeCart");
 
-    if(window.scrollY > 400){
 
-        scrollTopBtn.style.display = "block";
+// =========================================
+// SAVE CART
+// =========================================
 
-    }else{
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
 
-        scrollTopBtn.style.display = "none";
+
+// =========================================
+// ADD TO CART
+// =========================================
+
+function addToCart(id) {
+
+    const product = products.find(item => item.id === id);
+
+    if (!product) return;
+
+    const existing = cart.find(item => item.id === id);
+
+    if (existing) {
+
+        existing.quantity++;
+
+    } else {
+
+        cart.push({
+            ...product,
+            quantity: 1
+        });
+
+    }
+
+    saveCart();
+    updateCart();
+
+    cartSidebar.classList.add("active");
+
+}
+
+
+// =========================================
+// UPDATE CART
+// =========================================
+
+function updateCart() {
+
+    cartItems.innerHTML = "";
+
+    let totalItems = 0;
+    let totalPrice = 0;
+
+    if (cart.length === 0) {
+
+        cartItems.innerHTML = `
+            <p style="padding:25px;text-align:center;">
+                🛒 Your cart is empty.
+            </p>
+        `;
+
+        cartCount.innerText = 0;
+        cartTotal.innerText = 0;
+
+        saveCart();
+
+        return;
+    }
+
+    let html = "";
+
+    cart.forEach(item => {
+
+        const amount = item.price * item.quantity;
+
+        totalItems += item.quantity;
+        totalPrice += amount;
+
+        html += `
+
+        <div class="cart-item">
+
+            <div class="cart-info">
+
+                <h4>${item.name}</h4>
+
+                <p>₹${item.price}</p>
+
+            </div>
+
+            <div class="quantity-box">
+
+                <button
+                    onclick="decreaseQuantity(${item.id})">
+
+                    −
+
+                </button>
+
+                <span>${item.quantity}</span>
+
+                <button
+                    onclick="increaseQuantity(${item.id})">
+
+                    +
+
+                </button>
+
+            </div>
+
+            <div class="cart-price">
+
+                ₹${amount}
+
+            </div>
+
+            <button
+                class="remove-btn"
+                onclick="removeItem(${item.id})">
+
+                <i class="fa-solid fa-trash"></i>
+
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+    cartItems.innerHTML = html;
+
+    cartCount.innerText = totalItems;
+
+    cartTotal.innerText = totalPrice;
+
+    saveCart();
+
+}
+
+
+// =========================================
+// REMOVE ITEM
+// =========================================
+
+function removeItem(id) {
+
+    cart = cart.filter(item => item.id !== id);
+
+    updateCart();
+
+}
+
+
+// =========================================
+// INCREASE QUANTITY
+// =========================================
+
+function increaseQuantity(id) {
+
+    const item = cart.find(product => product.id === id);
+
+    if (!item) return;
+
+    item.quantity++;
+
+    updateCart();
+
+}
+
+
+// =========================================
+// DECREASE QUANTITY
+// =========================================
+
+function decreaseQuantity(id) {
+
+    const item = cart.find(product => product.id === id);
+
+    if (!item) return;
+
+    item.quantity--;
+
+    if (item.quantity <= 0) {
+
+        removeItem(id);
+
+        return;
+
+    }
+
+    updateCart();
+
+}
+
+
+// =========================================
+// OPEN CART
+// =========================================
+
+cartIcon.addEventListener("click", () => {
+
+    cartSidebar.classList.add("active");
+
+});
+
+
+// =========================================
+// CLOSE CART
+// =========================================
+
+closeCart.addEventListener("click", () => {
+
+    cartSidebar.classList.remove("active");
+
+});
+
+
+// =========================================
+// CLOSE WHEN CLICKING OUTSIDE
+// =========================================
+
+window.addEventListener("click", (e) => {
+
+    if (
+        cartSidebar.classList.contains("active") &&
+        !cartSidebar.contains(e.target) &&
+        !cartIcon.contains(e.target)
+    ) {
+
+        cartSidebar.classList.remove("active");
 
     }
 
 });
 
-scrollTopBtn.addEventListener("click", () => {
 
-    window.scrollTo({
+// =========================================
+// INITIALIZE CART
+// =========================================
 
-        top:0,
+updateCart();
 
-        behavior:"smooth"
+// =========================================
+// CHECKOUT
+// =========================================
+
+const checkoutModal = document.getElementById("checkoutModal");
+const closeCheckout = document.getElementById("closeCheckout");
+
+const upiModal = document.getElementById("upiModal");
+const closeUPI = document.getElementById("closeUPI");
+
+const successModal = document.getElementById("successModal");
+
+const orderModal = document.getElementById("orderModal");
+const continueOrder = document.getElementById("continueOrder");
+
+
+// =========================================
+// OPEN CHECKOUT
+// =========================================
+
+function openCheckout() {
+
+    if (cart.length === 0) {
+
+        alert("Your cart is empty!");
+        return;
+
+    }
+
+    checkoutModal.classList.add("active");
+
+}
+
+
+// =========================================
+// CLOSE CHECKOUT
+// =========================================
+
+closeCheckout.addEventListener("click", () => {
+
+    checkoutModal.classList.remove("active");
+
+});
+
+
+// =========================================
+// PAY AT COUNTER
+// =========================================
+
+function payCounter() {
+
+    checkoutModal.classList.remove("active");
+
+    cartSidebar.classList.remove("active");
+
+    cart = [];
+
+    updateCart();
+
+    showSuccess();
+
+}
+
+
+// =========================================
+// OPEN UPI
+// =========================================
+
+function payUPI() {
+
+    checkoutModal.classList.remove("active");
+
+    upiModal.classList.add("active");
+
+}
+
+
+// =========================================
+// CLOSE UPI
+// =========================================
+
+closeUPI.addEventListener("click", () => {
+
+    upiModal.classList.remove("active");
+
+});
+
+
+// =========================================
+// OPEN UPI APP
+// =========================================
+
+function openUPI() {
+
+    window.open(
+
+        "upi://pay?pa=8341924117@mbk&pn=Virat Snooker Zone",
+
+        "_self"
+
+    );
+
+}
+
+
+// =========================================
+// PAYMENT DONE
+// =========================================
+
+function paymentDone() {
+
+    upiModal.classList.remove("active");
+
+    cartSidebar.classList.remove("active");
+
+    cart = [];
+
+    updateCart();
+
+    showSuccess();
+
+}
+
+
+// =========================================
+// WHATSAPP ORDER
+// =========================================
+
+function placeOrder() {
+
+    if (cart.length === 0) {
+
+        alert("Your cart is empty!");
+
+        return;
+
+    }
+
+    checkoutModal.classList.remove("active");
+
+    orderModal.classList.add("active");
+
+}
+
+
+// =========================================
+// CONTINUE TO WHATSAPP
+// =========================================
+
+continueOrder.addEventListener("click", () => {
+
+    let total = 0;
+
+    let message = "🍽️ *Virat Snooker Zone*%0A%0A";
+
+    message += "Order Details%0A%0A";
+
+    cart.forEach(item => {
+
+        const amount = item.price * item.quantity;
+
+        total += amount;
+
+        message +=
+            `🍔 ${item.name}%0A`;
+
+        message +=
+            `Qty : ${item.quantity}%0A`;
+
+        message +=
+            `Price : ₹${item.price}%0A`;
+
+        message +=
+            `Amount : ₹${amount}%0A%0A`;
 
     });
 
+    message += "--------------------%0A";
+
+    message +=
+        `💰 Total : ₹${total}%0A`;
+
+    message += "--------------------%0A";
+
+    message +=
+        "Thank You ❤️";
+
+    const phone = "918341924117";
+
+    window.open(
+
+        `https://wa.me/${phone}?text=${message}`,
+
+        "_blank"
+
+    );
+
+    orderModal.classList.remove("active");
+
+    cartSidebar.classList.remove("active");
+
+    cart = [];
+
+    updateCart();
+
+    showSuccess();
+
 });
+
+
+// =========================================
+// ORDER SUCCESS
+// =========================================
+
+function generateOrderNumber() {
+
+    return "VSZ-" +
+
+        Math.floor(
+
+            1000 + Math.random() * 9000
+
+        );
+
+}
+
+function generateWaitingTime() {
+
+    return Math.floor(
+
+        Math.random() * 11
+
+    ) + 10;
+
+}
+
+function showSuccess() {
+
+    const order = generateOrderNumber();
+
+    const waiting = generateWaitingTime();
+
+    document.getElementById("orderNumber").innerHTML =
+
+        "Order No : <b>" +
+
+        order +
+
+        "</b>";
+
+    document.getElementById("waitingTime").innerHTML =
+
+        "Estimated Preparation Time : <b>" +
+
+        waiting +
+
+        " Minutes</b>";
+
+    successModal.classList.add("active");
+
+}
+
+
+// =========================================
+// CLOSE SUCCESS
+// =========================================
+
+function closeSuccess() {
+
+    successModal.classList.remove("active");
+
+}
+
+
+// =========================================
+// CLOSE MODALS WHEN CLICKING OUTSIDE
+// =========================================
+
+window.addEventListener("click", (e) => {
+
+    if (e.target === checkoutModal)
+
+        checkoutModal.classList.remove("active");
+
+    if (e.target === upiModal)
+
+        upiModal.classList.remove("active");
+
+    if (e.target === successModal)
+
+        successModal.classList.remove("active");
+
+    if (e.target === orderModal)
+
+        orderModal.classList.remove("active");
+
+});
+
+
 // =========================================
 // PAGE LOADER
 // =========================================
@@ -765,3 +1156,45 @@ window.addEventListener("load", () => {
     }, 1200);
 
 });
+
+
+// =========================================
+// SCROLL TO TOP
+// =========================================
+
+const scrollTopBtn =
+
+document.getElementById("scrollTopBtn");
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 400) {
+
+        scrollTopBtn.style.display = "block";
+
+    }
+
+    else {
+
+        scrollTopBtn.style.display = "none";
+
+    }
+
+});
+
+scrollTopBtn.addEventListener("click", () => {
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+});
+
+
+// =========================================
+// END
+// =========================================

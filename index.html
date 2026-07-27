@@ -11,10 +11,11 @@
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Google Font -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
     <!-- Font Awesome -->
@@ -70,9 +71,7 @@
             <h2>Virat Snooker Zone</h2>
 
             <p>
-
                 Delicious Food • Refreshing Drinks • Premium Snooker
-
             </p>
 
             <a href="#menu" class="menu-btn">
@@ -106,29 +105,33 @@
 
     </section>
 
-    <!-- ================= CATEGORIES ================= -->
+    <!-- ================= CATEGORY ================= -->
 
     <section class="categories">
 
-        <button class="category-btn active" data-category="All">
+        <button class="category-btn active"
+            data-category="All">
 
             🍽️ All
 
         </button>
 
-        <button class="category-btn" data-category="Food">
+        <button class="category-btn"
+            data-category="Food">
 
             🍔 Food
 
         </button>
 
-        <button class="category-btn" data-category="Drinks">
+        <button class="category-btn"
+            data-category="Drinks">
 
             ☕ Drinks
 
         </button>
 
-        <button class="category-btn" data-category="Milk Shakes">
+        <button class="category-btn"
+            data-category="Milk Shakes">
 
             🥤 Milk Shakes
 
@@ -136,9 +139,39 @@
 
     </section>
 
+    <!-- ================= FOOD TYPE FILTER ================= -->
+
+    <section
+        class="type-filter"
+        id="typeFilter">
+
+        <div class="type-buttons">
+
+            <button
+                class="type-btn"
+                data-type="Veg">
+
+                🟢 Veg
+
+            </button>
+
+            <button
+                class="type-btn"
+                data-type="Non Veg">
+
+                🔴 Non Veg
+
+            </button>
+
+        </div>
+
+    </section>
+
     <!-- ================= MENU ================= -->
 
-    <section class="menu-section" id="menu">
+    <section
+        class="menu-section"
+        id="menu">
 
         <div class="section-title">
 
@@ -148,210 +181,339 @@
 
         </div>
 
-        <div id="products" class="product-grid">
+        <div
+            id="products"
+            class="product-grid">
 
-            <!-- Products Load Here -->
+            <!-- Products will load here -->
 
         </div>
 
     </section>
-
     <!-- ================= TODAY SPECIAL ================= -->
 
-    <section class="today-special">
+<section class="today-special">
 
-        <div class="special-card">
+    <div class="special-card">
 
-            <h2>🔥 Today's Special</h2>
+        <h2>🔥 Today's Special</h2>
 
-            <h3>Chicken Nuggets</h3>
+        <h3>Chicken Nuggets</h3>
+
+        <p>
+            Crispy Chicken Nuggets with Fresh Dip
+        </p>
+
+        <span>
+            Only ₹100
+        </span>
+
+    </div>
+
+</section>
+
+<!-- ================= CART SIDEBAR ================= -->
+
+<div id="cartSidebar" class="cart-sidebar">
+
+    <div class="cart-header">
+
+        <h2>🛒 Your Cart</h2>
+
+        <span id="closeCart">&times;</span>
+
+    </div>
+
+    <div id="cartItems" class="cart-items">
+
+        <p>Your cart is empty.</p>
+
+    </div>
+
+    <div class="cart-footer">
+
+        <h3>
+            Total : ₹<span id="cartTotal">0</span>
+        </h3>
+
+        <button
+            class="checkout-btn"
+            onclick="openCheckout()">
+
+            Proceed to Checkout →
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ================= CHECKOUT MODAL ================= -->
+
+<div id="checkoutModal" class="checkout-modal">
+
+    <div class="checkout-box">
+
+        <span id="closeCheckout">&times;</span>
+
+        <h2>Checkout</h2>
+
+        <p>Select your payment method</p>
+
+        <button
+            class="payment-btn"
+            onclick="payCounter()">
+
+            💵 Pay at Counter
+
+        </button>
+
+        <button
+            class="payment-btn"
+            onclick="payUPI()">
+
+            📱 Pay with UPI
+
+        </button>
+
+        <button
+            class="payment-btn whatsapp-btn"
+            onclick="placeOrder()">
+
+            📲 WhatsApp Order
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ================= UPI PAYMENT MODAL ================= -->
+
+<div id="upiModal" class="checkout-modal">
+
+    <div class="checkout-box">
+
+        <span id="closeUPI">&times;</span>
+
+        <h2>📱 Scan & Pay</h2>
+
+        <p>Scan the QR Code using any UPI App</p>
+
+        <img
+            src="assets/payment-qr.png"
+            class="upi-qr"
+            alt="UPI QR">
+
+        <h3>Virat Snooker Zone</h3>
+
+        <p>
+            <strong>UPI ID :</strong>
+            8341924117@mbk
+        </p>
+
+        <button
+            class="payment-btn"
+            onclick="openUPI()">
+
+            💳 Pay Now
+
+        </button>
+
+        <button
+            class="payment-btn whatsapp-btn"
+            onclick="paymentDone()">
+
+            ✅ I've Paid
+
+        </button>
+
+    </div>
+
+</div>
+
+<!--Order Success-->
+
+<div id="successModal" class="checkout-modal">
+    <div class="checkout-box">
+        <div class="success-icon">
+            🎉
+        </div>
+        <h2>Order Confirmed</h2>
+        <h3 id="orderNumber"></h3>
+        <p id="waitingTime"></p>
+        <button
+        class="payment-btn"
+        onclick="closeSuccess()">
+        Done
+      </button>
+    </div>
+</div>
+
+<!-- ================= PRODUCT MODAL ================= -->
+
+<div id="productModal" class="modal">
+
+    <div class="modal-content">
+
+        <span id="closeModal">&times;</span>
+
+        <img
+            id="modalImage"
+            src=""
+            alt="Product">
+
+        <h2 id="modalName"></h2>
+
+        <p id="modalDescription"></p>
+
+        <div class="modal-info">
+
+            <span id="modalRating"></span>
+
+            <span id="modalPrice"></span>
+
+        </div>
+
+        <button id="modalAddBtn">
+
+            🛒 Add To Cart
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ================= CONTACT ================= -->
+
+<section class="contact-section">
+
+    <div class="section-title">
+
+        <h2>📍 Visit Us</h2>
+
+        <p>We're waiting to serve you!</p>
+
+    </div>
+
+    <div class="contact-container">
+
+        <div class="contact-card">
+
+            <h3>📍 Address</h3>
 
             <p>
 
-                Crispy Chicken Nuggets with Fresh Dip
+                Virat Snooker Zone<br>
+
+                Kashmeergadda, Karimnagar
 
             </p>
 
-            <span>
+        </div>
 
-                Only ₹100
+        <div class="contact-card">
 
-            </span>
+            <h3>📞 Phone</h3>
+
+            <p>1234567890</p>
 
         </div>
 
-    </section>
+        <div class="contact-card">
 
-    <!-- ================= CART SIDEBAR ================= -->
+            <h3>🕒 Opening Hours</h3>
 
-    <div id="cartSidebar" class="cart-sidebar">
-
-        <div class="cart-header">
-
-            <h2>🛒 Your Cart</h2>
-
-            <span id="closeCart">&times;</span>
-
-        </div>
-
-        <div id="cartItems" class="cart-items">
-
-            <p>Your cart is empty.</p>
-
-        </div>
-
-        <div class="cart-footer">
-
-            <h3>
-
-                Total : ₹<span id="cartTotal">0</span>
-
-            </h3>
-
-            <button
-                class="checkout-btn"
-                onclick="placeOrder()">
-
-                📲 Order on WhatsApp
-
-            </button>
+            <p>10:00 AM - 11:00 PM</p>
 
         </div>
 
     </div>
 
-    <!-- ================= PRODUCT MODAL ================= -->
+    <div class="contact-buttons">
 
-    <div id="productModal" class="modal">
+        <a
+            href="tel:+911234567890"
+            class="contact-btn">
 
-        <div class="modal-content">
+            📞 Call Now
 
-            <span id="closeModal">&times;</span>
+        </a>
 
-            <img
-                id="modalImage"
-                src=""
-                alt="Product">
+        <a
+            href="https://maps.google.com"
+            target="_blank"
+            class="contact-btn">
 
-            <h2 id="modalName"></h2>
+            📍 View on Map
 
-            <p id="modalDescription"></p>
-
-            <div class="modal-info">
-
-                <span id="modalRating"></span>
-
-                <span id="modalPrice"></span>
-
-            </div>
-
-            <button id="modalAddBtn">
-
-                Add To Cart
-
-            </button>
-
-        </div>
+        </a>
 
     </div>
 
-    <! === Contact ===>
-    <section class="contact-section">
-        <div class="secction-title">
-            <h2>📍 Visit Us</h2>
+</section>
 
-            <p>We're waiting to serve you!</p>
+<!-- ================= ORDER SUCCESS MODAL ================= -->
+
+<div id="orderModal" class="order-modal">
+
+    <div class="order-modal-content">
+
+        <div class="success-icon">
+
+            ✅
+
         </div>
-        <div class="contact-container">
-            <div class="contact-card">
-                <h3>📍 Address</h3>
-                <p>
-                    Virat Snooker Zone<br>
-                    Kashmeergadda,Karimnagar
-                </p>
-            </div>
-            <div class="contact-card">
-                <h3>📞 Phone</h3>
-                <p>
-                    1234567890
-                </p>
-                <div class="contact-card">
-                    <h3>🕒 Opening Hours</h3>
-                    <p>
-                        10.00 AM - 11:00 PM
-                    </p>
-                </div>
-            </div>
-            <div class="contact-buttons">
-                <a href="tel:+123467896" class="contact-btn">
-                    📞 Call Now
-                </a>
-                <a href="https://maps.google.com" target="_blank" class="contact-btn">
-                    📍 View on Map
-                </a>
-            </div>
-        </div>
-    </section>
 
-    <!--=== Order Success Modal===-->
+        <h2>Order Ready!</h2>
 
-    <div id="orderModal" class="order-modal">
-        <div class="order-modal-content">
-            <div class="success-icon">✅</div>
+        <p>
 
-            <h2>Order Ready!</h2>
-            <p>
-                Your order is ready to be sent on WhatsApp.
-            </p>
-            <button id="continueOrder">
-                Continue to WhatsApp
-            </button>
-        </div>
+            Your order is ready to be sent on WhatsApp.
+
+        </p>
+
+        <button id="continueOrder">
+
+            Continue to WhatsApp
+
+        </button>
+
     </div>
 
-    <!-- ================= ABOUT US ================= -->
+</div>
+<!-- ================= ABOUT US ================= -->
 
-    <section class="about-section">
+<section class="about-section">
 
-      <div class="about-content">
+    <div class="about-content">
 
         <div class="about-text">
 
             <h2>About Virat Snooker Zone</h2>
 
             <p>
-
                 Welcome to <strong>Virat Snooker Zone</strong>, your destination
                 for delicious food, refreshing drinks, tasty milkshakes, and
                 exciting snooker games.
-
             </p>
 
             <p>
-
                 We believe in serving fresh food with excellent quality and
                 providing a fun, comfortable place where friends and families
                 can relax and enjoy their time together.
-
             </p>
 
             <div class="about-features">
 
-                <div class="feature">
-                    🍔 Fresh Food
-                </div>
+                <div class="feature">🍔 Fresh Food</div>
 
-                <div class="feature">
-                    🥤 Cold Drinks
-                </div>
+                <div class="feature">🥤 Cold Drinks</div>
 
-                <div class="feature">
-                    🎱 Premium Snooker
-                </div>
+                <div class="feature">🎱 Premium Snooker</div>
 
-                <div class="feature">
-                    ❤️ Friendly Service
-                </div>
+                <div class="feature">❤️ Friendly Service</div>
 
             </div>
 
@@ -363,13 +525,13 @@
 
         </div>
 
-      </div>
+    </div>
 
-    </section>
+</section>
 
-    <!-- ================= BUSINESS STATS ================= -->
+<!-- ================= BUSINESS STATS ================= -->
 
-    <section class="stats-section">
+<section class="stats-section">
 
     <div class="section-title">
 
@@ -415,10 +577,11 @@
 
     </div>
 
-    </section>
-    <!-- ================= GALLERY ================= -->
+</section>
 
-    <section class="gallery-section">
+<!-- ================= GALLERY ================= -->
+
+<section class="gallery-section">
 
     <div class="section-title">
 
@@ -431,49 +594,56 @@
     <div class="gallery-grid">
 
         <div class="gallery-item">
-            <img src="assets/gallery1.jpg" alt="Food">
+            <img src="assets/gallery1.jpg" alt="">
         </div>
 
         <div class="gallery-item">
-            <img src="assets/gallery2.jpg" alt="Drink">
+            <img src="assets/gallery2.jpg" alt="">
         </div>
 
         <div class="gallery-item">
-            <img src="assets/gallery3.jpg" alt="Milk Shake">
+            <img src="assets/gallery3.jpg" alt="">
         </div>
 
         <div class="gallery-item">
-            <img src="assets/gallery4.jpg" alt="Snooker">
+            <img src="assets/gallery4.jpg" alt="">
         </div>
 
         <div class="gallery-item">
-            <img src="assets/gallery5.jpg" alt="Restaurant">
+            <img src="assets/gallery5.jpg" alt="">
         </div>
 
         <div class="gallery-item">
-            <img src="assets/gallery6.jpg" alt="Food">
+            <img src="assets/gallery6.jpg" alt="">
         </div>
 
     </div>
 
-    </section>
+</section>
 
-    <!-- Website Qr===-->
+<!-- ================= WEBSITE QR ================= -->
 
-    <section class="qr-section">
-        <h2>📱 Scan to Open Menu</h2>
+<section class="qr-section">
 
-        <p>Scan the QR code to access our website instantly.</p>
+    <h2>📱 Scan to Open Menu</h2>
 
-        <div class="qr-card">
-            <img src="assets/website-qr.png" alt="Website Qr Code">
+    <p>Scan this QR Code to open our digital menu.</p>
 
-            <p>Virat Snooker Zone</p>
-        </div>
-    </section>
-    <!-- ================= REVIEWS ================= -->
+    <div class="qr-card">
 
-    <section class="reviews">
+        <img
+            src="assets/website-qr.png"
+            alt="Website QR">
+
+        <h3>Virat Snooker Zone</h3>
+
+    </div>
+
+</section>
+
+<!-- ================= CUSTOMER REVIEWS ================= -->
+
+<section class="reviews">
 
     <div class="section-title">
 
@@ -492,7 +662,8 @@
             <div class="stars">⭐⭐⭐⭐⭐</div>
 
             <p>
-                Amazing food and quick service. The Chicken Nuggets are my favorite!
+                Amazing food and quick service.
+                Chicken Nuggets are my favourite!
             </p>
 
         </div>
@@ -504,7 +675,8 @@
             <div class="stars">⭐⭐⭐⭐⭐</div>
 
             <p>
-                Oreo Shake was delicious. The ordering process is very easy.
+                Oreo Shake was delicious.
+                Very easy ordering process.
             </p>
 
         </div>
@@ -516,59 +688,50 @@
             <div class="stars">⭐⭐⭐⭐⭐</div>
 
             <p>
-                Best place to enjoy snacks and play snooker with friends.
+                Best place to enjoy snacks and
+                play snooker with friends.
             </p>
 
         </div>
 
-     </div>
+    </div>
 
-    </section>
+</section>
 
+<!-- ================= FOOTER ================= -->
 
+<footer>
 
-    <!-- ================= FOOTER ================= -->
+    <div class="footer-content">
 
-    <footer>
+        <h3>Virat Snooker Zone</h3>
 
-        <div class="footer-content">
+        <p>
 
-            <h3>Virat Snooker Zone</h3>
+            Thank you for visiting ❤️
 
-            <p>
+        </p>
 
-                Thank you for visiting ❤️
+        <small>
 
-            </p>
+            © 2026 Virat Snooker Zone.
+            All Rights Reserved.
 
-            <small>
+        </small>
 
-                © 2026 Virat Snooker Zone. All Rights Reserved.
+    </div>
 
-            </small>
+</footer>
 
-        </div>
-
-    </footer>
-
-    <!-- ================= SCROLL TO TOP ================= -->
-
-    <button id="scrollTopBtn" title="Go to Top">
-
-    <i class="fa-solid fa-arrow-up"></i>
-
-    </button>
-
-    <script src="script.js"></script>
-
-</body>
 <!-- ================= LOADER ================= -->
 
 <div id="loader">
 
     <div class="loader-content">
 
-        <img src="assets/virat-logo.jpg" alt="Logo">
+        <img
+            src="assets/virat-logo.jpg"
+            alt="Logo">
 
         <h2>Virat Snooker Zone</h2>
 
@@ -579,5 +742,19 @@
     </div>
 
 </div>
+
+<!-- ================= SCROLL TO TOP ================= -->
+
+<button id="scrollTopBtn">
+
+    <i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+<!-- ================= SCRIPT ================= -->
+
+<script src="script.js"></script>
+
+</body>
 
 </html>
