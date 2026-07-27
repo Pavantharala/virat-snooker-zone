@@ -11,10 +11,10 @@ const products = [
 
     {
         id: 1,
-        name: "Chicken Nuggets",
+        name: "Egg Bhurji Plate",
         category: "Food",
-        image: "assets/Chicken_Nuggets_.jpg",
-        price: 100,
+        image: "assets/Egg-bhurji.jpg",
+        price: 60,
         rating: 4.9,
         type: "Non Veg",
         bestseller: true,
@@ -23,7 +23,7 @@ const products = [
 
     {
         id: 2,
-        name: "French Fries",
+        name: "French Fries 6-Pcs Plate",
         category: "Food",
         image: "assets/french.fries.jpg",
         price: 120,
@@ -50,11 +50,167 @@ const products = [
         name: "Oreo Shake",
         category: "Milk Shakes",
         image: "assets/oreo-shake.jpg",
-        price: 100,
+        price: 80,
         rating: 4.9,
         type: "Veg",
         bestseller: false,
         description: "Cold Oreo Milk Shake"
+    },
+
+    {
+        id: 5,
+        name: "Egg Maggie Noodles Plate",
+        category: "Food",
+        image: "assets/Egg-maggie.jpg",
+        price: 100,
+        rating: 4.9,
+        type: "Non Veg",
+        bestseller: false,
+        description: "Crispy Chicken Nuggets"
+    },
+
+    {
+        id: 6,
+        name: "Double Egg Omlette",
+        category: "Food",
+        image: "assets/Egg-omlette.jpg",
+        price: 60,
+        rating: 4.9,
+        type: "Non Veg",
+        bestseller: true,
+        description: "Crispy Chicken Nuggets"
+    },
+
+    {
+        id: 7,
+        name: "Veg Maggie Noodles 2-Plates",
+        category: "Food",
+        image: "assets/Veg-Masala-Maggi.jpg",
+        price: 120,
+        rating: 4.9,
+        type: "Veg",
+        bestseller: true,
+        description: "Crispy Chicken Nuggets"
+    },
+
+    {
+        id: 8,
+        name: "Plain Maggie Noodles Plate",
+        category: "Food",
+        image: "assets/plain-maggie.jpg",
+        price: 80,
+        rating: 4.9,
+        type: "Veg",
+        bestseller: true,
+        description: "Crispy Chicken Nuggets"
+    },
+
+    {
+        id: 9,
+        name: "Sweet Corn 2-Cups",
+        category: "Food",
+        image: "assets/sweet-corn.jpg",
+        price: 80,
+        rating: 4.9,
+        type: "Veg",
+        bestseller: true,
+        description: "Crispy Chicken Nuggets"
+    },
+
+    {
+        id: 10,
+        name: "Tea",
+        category: "Drinks",
+        image: "assets/chai.jpg",
+        price: 20,
+        rating: 4.9,
+        type: "Drinks",
+        bestseller: true,
+        description: "Crispy Chicken Nuggets"
+    },
+
+    {
+        id: 11,
+        name: "Black Coffee",
+        category: "Drinks",
+        image: "assets/Black-coffeee.jpg",
+        price: 20,
+        rating: 4.9,
+        type: "Non Veg",
+        bestseller: true,
+        description: "Crispy Chicken Nuggets"
+    },
+
+    {
+        id: 12,
+        name: "Milk",
+        category: "Drinks",
+        image: "",
+        price: 20,
+        rating: 4.9,
+        type: "Drink",
+        bestseller: true,
+        description: "Crispy Chicken Nuggets"
+    },
+
+    {
+        id: 13,
+        name: "Green Tea",
+        category: "Drinks",
+        image: "assets/Green-tea.jpg",
+        price: 20,
+        rating: 4.9,
+        type: "Non Veg",
+        bestseller: true,
+        description: "Crispy Chicken Nuggets"
+    },
+
+    {
+        id: 14,
+        name: "Banana Shake",
+        category: "Milk Shakes",
+        image: "assets/banana-shake.jpg",
+        price: 80,
+        rating: 4.9,
+        type: "Veg",
+        bestseller: true,
+        description: "Crispy Chicken Nuggets"
+    },
+
+    {
+        id: 15,
+        name: "Badam Shake",
+        category: "Milk Shakes",
+        image: "assets/badam-shake.jpg",
+        price: 100,
+        rating: 4.9,
+        type: "Veg",
+        bestseller: true,
+        description: "Crispy Chicken Nuggets"
+    },
+
+    {
+        id: 16,
+        name: "Sweet Lassi",
+        category: "Milk Shakes",
+        image: "",
+        price: 60,
+        rating: 4.9,
+        type: "Veg",
+        bestseller: true,
+        description: "Crispy Chicken Nuggets"
+    },
+
+    {
+        id: 17,
+        name: "Lemon Juice",
+        category: "Milk Shakes",
+        image: "assets/lemon-juice.jpg",
+        price: 40,
+        rating: 4.9,
+        type: "Veg",
+        bestseller: true,
+        description: "Crispy Chicken Nuggets"
     }
 
 ];
