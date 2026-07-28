@@ -26,7 +26,7 @@ const products = [
         id: 2,
         name: "French Fries",
         category: "Food",
-        image: "assets/french.fries.jpg",
+        image: "assets/fri.jpg",
         price: 120,
         rating: 4.8,
         type: "Veg",
@@ -1145,17 +1145,13 @@ window.addEventListener("click", (e) => {
 // PAGE LOADER
 // =========================================
 
-window.addEventListener("load", () => {
-
+document.addEventListener("DOMContentLoaded", () => {
     const loader = document.getElementById("loader");
-
-    setTimeout(() => {
-
+    if (loader) {
         loader.classList.add("loader-hide");
-
-    }, 1200);
-
+    }
 });
+
 
 
 // =========================================
