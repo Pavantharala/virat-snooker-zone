@@ -534,18 +534,26 @@ footer{
 
 /*Todays Special*/
 .today-special{
-    width:90%;
-    max-width:1200px;
-    margin:40px auto;
+    padding:50px 20px;
+    display:flex;
+    justify-content:center;
 }
 
 .special-card{
-    background:linear-gradient(135deg,#FC8019,#ff9f43);
-    color:white;
+    max-width:400px;
+    width:100%;
+    background:#1d1d1d;
     border-radius:20px;
-    padding:30px;
+    padding:20px;
     text-align:center;
     box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+.special-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    border-radius:15px;
+    margin:15px 0;
 }
 
 .special-card h2{

@@ -857,6 +857,28 @@ const successModal = document.getElementById("successModal");
 const orderModal = document.getElementById("orderModal");
 const continueOrder = document.getElementById("continueOrder");
 
+// Payment Screenshot
+
+const paymentSlip =
+document.getElementById("paymentSlip");
+
+const fileName =
+document.getElementById("fileName");
+
+let uploadedSlip = "";
+
+paymentSlip.addEventListener("change", function () {
+
+    if (this.files.length > 0) {
+
+        uploadedSlip = this.files[0].name;
+
+        fileName.innerHTML =
+        "✅ " + uploadedSlip;
+
+    }
+
+});
 
 // =========================================
 // OPEN CHECKOUT
@@ -920,7 +942,7 @@ function payAtCounter() {
     message += "Payment Mode : Pay at Counter%0A";
     message += "Customer will pay at the restaurant.%0A";
 
-    const phone = "918341924117"; // Replace with your WhatsApp number
+    const phone = "918341924117";
 
     window.open(
         `https://wa.me/${phone}?text=${message}`,
@@ -935,7 +957,6 @@ function payAtCounter() {
 
     showSuccess();
 }
-
 
 // =========================================
 // OPEN UPI
@@ -1203,6 +1224,33 @@ window.addEventListener("click", (e) => {
         orderModal.classList.remove("active");
 
 });
+
+
+// =========================================
+// TODAY'S SPECIAL
+// =========================================
+
+function loadTodaySpecial() {
+
+    const specials = products.filter(p => p.category === "Food");
+
+    if (specials.length === 0) return;
+
+    const special = specials[new Date().getDate() % specials.length];
+
+    const img = document.getElementById("todaySpecialImage");
+    const name = document.getElementById("todaySpecialName");
+    const description = document.getElementById("todaySpecialDescription");
+    const price = document.getElementById("todaySpecialPrice");
+
+    if (img) img.src = special.image;
+    if (name) name.textContent = special.name;
+    if (description) description.textContent = special.description;
+    if (price) price.textContent = "₹" + special.price;
+}
+
+loadTodaySpecial();
+
 
 
 // =========================================

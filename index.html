@@ -198,15 +198,10 @@
 
         <h2>🔥 Today's Special</h2>
 
-        <h3>Chicken Nuggets</h3>
-
-        <p>
-            Crispy Chicken Nuggets with Fresh Dip
-        </p>
-
-        <span>
-            Only ₹100
-        </span>
+        <img id="todaySpecialImage" src="" alt="Today's Special">
+        <h3 id="todaySpecialName">Loading...</h3>
+        <p id="todaySpecialDescription"></p>
+        <span id="todaySpecialPrice">₹0</span>
 
     </div>
 
@@ -312,26 +307,31 @@
             8341924117@mbk
         </p>
 
+        <!-- Payment Screenshot -->
+        <h3>Attach Payment Screenshot</h3>
+
+        <input
+            type="file"
+            id="paymentSlip"
+            accept="image/*">
+
+        <p id="fileName"></p>
+
         <button
             class="payment-btn"
             onclick="openUPI()">
-
             💳 Pay Now
-
         </button>
 
         <button
             class="payment-btn whatsapp-btn"
             onclick="paymentDone()">
-
             ✅ I've Paid
-
         </button>
 
     </div>
 
 </div>
-
 <!--Order Success-->
 
 <div id="successModal" class="checkout-modal">
@@ -417,7 +417,7 @@
 
             <h3>📞 Phone</h3>
 
-            <p>1234567890</p>
+            <p>9939393426</p>
 
         </div>
 
@@ -434,7 +434,7 @@
     <div class="contact-buttons">
 
         <a
-            href="tel:+911234567890"
+            href="tel:+919939393426"
             class="contact-btn">
 
             📞 Call Now
@@ -442,11 +442,11 @@
         </a>
 
         <a
-            href="https://maps.google.com"
+            href="https://maps.app.goo.gl/hky3jQYTLQ2J51zu6"
             target="_blank"
             class="contact-btn">
 
-            📍 View on Map
+            📍 Get Directions
 
         </a>
 
@@ -561,7 +561,7 @@
 
         <div class="stat-card">
 
-            <h2>4.9 ⭐</h2>
+            <h2>4.8 ⭐</h2>
 
             <p>Average Rating</p>
 
@@ -569,7 +569,7 @@
 
         <div class="stat-card">
 
-            <h2>3+</h2>
+            <h2>2+</h2>
 
             <p>Years Experience</p>
 
