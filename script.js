@@ -11,7 +11,7 @@
 const products = [
 
     {
-        id: 1,
+        id: 10,
         name: "Egg Bhurji Plate",
         category: "Food",
         image: "assets/Egg-bhurji.jpg",
@@ -84,7 +84,7 @@ const products = [
 
     {
         id: 7,
-        name: "Veg Maggi",
+        name: "Veg Maggi 2Serves",
         category: "Food",
         image: "assets/Veg-Masala-Maggi.jpg",
         price: 120,
@@ -119,7 +119,7 @@ const products = [
     },
 
     {
-        id: 10,
+        id: 1,
         name: "Tea",
         category: "Drinks",
         image: "assets/chai.jpg",
@@ -212,6 +212,17 @@ const products = [
         type: "Veg",
         bestseller: true,
         description: "Fresh lemon juice."
+    },
+    {
+        id: 17,
+        name: "Coffee",
+        category: "Drinks",
+        image: "assets/coffee.jpg",
+        price: 40,
+        rating: 4.9,
+        type: "Veg",
+        bestseller: true,
+        description: "Freshly brewed hot coffee.",
     }
 
 ];
