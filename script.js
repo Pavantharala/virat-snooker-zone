@@ -908,6 +908,16 @@ closeCheckout.addEventListener("click", () => {
 
 });
 
+// =========================================
+// ORDER ID
+// =========================================
+
+let currentOrderId = "";
+
+function generateOrderNumber() {
+    return "VSZ-" + Date.now().toString().slice(-6);
+}
+
 
 // =========================================
 // PAY AT COUNTER
@@ -920,10 +930,13 @@ function payAtCounter() {
         return;
     }
 
+    currentOrderId = generateOrderNumber();
+
     let total = 0;
 
     let message = "🍽️ *Virat Snooker Zone*%0A%0A";
     message += "🛎️ *New Order*%0A%0A";
+    message += "🆔 Order ID : " + currentOrderId + "%0A%0A";
 
     cart.forEach(item => {
 
@@ -940,7 +953,7 @@ function payAtCounter() {
     message += "------------------------%0A";
     message += `💰 Total : ₹${total}%0A`;
     message += "Payment Mode : Pay at Counter%0A";
-    message += "Customer will pay at the restaurant.%0A";
+
 
     const phone = "918341924117";
 
@@ -1141,16 +1154,10 @@ continueOrder.addEventListener("click", () => {
 // ORDER SUCCESS
 // =========================================
 
+let currentOrderId = "";
+
 function generateOrderNumber() {
-
-    return "VSZ-" +
-
-        Math.floor(
-
-            1000 + Math.random() * 9000
-
-        );
-
+    return "VSZ-" + Date.now().toString().slice(-6);
 }
 
 function generateWaitingTime() {
@@ -1165,28 +1172,17 @@ function generateWaitingTime() {
 
 function showSuccess() {
 
-    const order = generateOrderNumber();
-
     const waiting = generateWaitingTime();
 
     document.getElementById("orderNumber").innerHTML =
-
-        "Order No : <b>" +
-
-        order +
-
-        "</b>";
+        "Order ID : <b>" + currentOrderId + "</b>";
 
     document.getElementById("waitingTime").innerHTML =
-
         "Estimated Preparation Time : <b>" +
-
         waiting +
-
         " Minutes</b>";
 
     successModal.classList.add("active");
-
 }
 
 
