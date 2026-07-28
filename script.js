@@ -953,6 +953,39 @@ function openUPI() {
 
 function paymentDone() {
 
+    let total = 0;
+
+    let message = "🍽️ *Virat Snooker Zone*%0A%0A";
+    message += "✅ *UPI Payment Completed*%0A%0A";
+    message += "Order Details:%0A%0A";
+
+    cart.forEach(item => {
+        const amount = item.price * item.quantity;
+
+        total += amount;
+
+        message += `🍔 ${item.name}%0A`;
+        message += `Qty : ${item.quantity}%0A`;
+        message += `Price : ₹${item.price}%0A`;
+        message += `Amount : ₹${amount}%0A%0A`;
+
+
+    });
+
+     message += "--------------------%0A";
+    message += `💰 Total : ₹${total}%0A`;
+    message += "--------------------%0A";
+    message += "Payment Mode : UPI%0A";
+    message += "Customer clicked 'I've Paid'.%0A";
+
+    const phone = "918341924117";
+
+    window.open(
+        `https://wa.me/${phone}?text=${message}`,
+        "_blank"
+    );
+
+
     upiModal.classList.remove("active");
 
     cartSidebar.classList.remove("active");
