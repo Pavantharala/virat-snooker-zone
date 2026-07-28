@@ -1018,6 +1018,8 @@ function openUPI() {
 
 function paymentDone() {
 
+    currentOrderId = generateOrderNumber();
+
     let total = 0;
 
     let message = "🍽️ *Virat Snooker Zone*%0A%0A";
@@ -1091,6 +1093,8 @@ function placeOrder() {
 
 continueOrder.addEventListener("click", () => {
 
+    currentOrderId = generateOrderNumber();
+
     let total = 0;
 
     let message = "🍽️ *Virat Snooker Zone*%0A%0A";
@@ -1153,12 +1157,6 @@ continueOrder.addEventListener("click", () => {
 // =========================================
 // ORDER SUCCESS
 // =========================================
-
-let currentOrderId = "";
-
-function generateOrderNumber() {
-    return "VSZ-" + Date.now().toString().slice(-6);
-}
 
 function generateWaitingTime() {
 
