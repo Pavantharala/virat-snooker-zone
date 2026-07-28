@@ -1559,35 +1559,24 @@ html{
 
 }
 
-.gallery-item{
-
-    overflow:hidden;
-
-    border-radius:18px;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
-
-    cursor:pointer;
-
+.gallery-item {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 15px;
 }
 
-.gallery-item img{
-
-    width:100%;
-
-    height:260px;
-
-    object-fit:cover;
-
-    transition:.4s;
-
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s;
 }
 
-.gallery-item:hover img{
-
-    transform:scale(1.08);
-
+.gallery-item:hover img {
+    transform: scale(1.08);
 }
+
 
 /* ===========================
       TYPE FILTER

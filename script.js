@@ -966,7 +966,7 @@ function payAtCounter() {
     message += "Payment Mode : Pay at Counter%0A";
 
 
-    const phone = "918341924117";
+    const phone = "919939393426";
 
     window.open(
         `https://wa.me/${phone}?text=${message}`,
@@ -1014,7 +1014,7 @@ function openUPI() {
 
     window.open(
 
-        "upi://pay?pa=8341924117@mbk&pn=Virat Snooker Zone",
+        "upi://pay?pa=8paytmqr6simag@ptyes&pn=Virat Snooker Zone",
 
         "_self"
 
@@ -1056,7 +1056,7 @@ function paymentDone() {
     message += "Payment Mode : UPI%0A";
     message += "Customer clicked 'I've Paid'.%0A";
 
-    const phone = "918341924117";
+    const phone = "919939393426";
 
     window.open(
         `https://wa.me/${phone}?text=${message}`,
@@ -1142,7 +1142,7 @@ continueOrder.addEventListener("click", () => {
     message +=
         "Thank You ❤️";
 
-    const phone = "918341924117";
+    const phone = "919939393426";
 
     window.open(
 
