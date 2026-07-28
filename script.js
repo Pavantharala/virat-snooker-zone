@@ -891,18 +891,49 @@ closeCheckout.addEventListener("click", () => {
 // PAY AT COUNTER
 // =========================================
 
-function payCounter() {
+function payAtCounter() {
+
+    if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+    }
+
+    let total = 0;
+
+    let message = "🍽️ *Virat Snooker Zone*%0A%0A";
+    message += "🛎️ *New Order*%0A%0A";
+
+    cart.forEach(item => {
+
+        const amount = item.price * item.quantity;
+        total += amount;
+
+        message += `🍔 ${item.name}%0A`;
+        message += `Qty : ${item.quantity}%0A`;
+        message += `Price : ₹${item.price}%0A`;
+        message += `Amount : ₹${amount}%0A%0A`;
+
+    });
+
+    message += "------------------------%0A";
+    message += `💰 Total : ₹${total}%0A`;
+    message += "Payment Mode : Pay at Counter%0A";
+    message += "Customer will pay at the restaurant.%0A";
+
+    const phone = "918341924117"; // Replace with your WhatsApp number
+
+    window.open(
+        `https://wa.me/${phone}?text=${message}`,
+        "_blank"
+    );
 
     checkoutModal.classList.remove("active");
-
     cartSidebar.classList.remove("active");
 
     cart = [];
-
     updateCart();
 
     showSuccess();
-
 }
 
 
