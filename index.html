@@ -192,20 +192,38 @@
     </section>
     <!-- ================= TODAY SPECIAL ================= -->
 
-<section class="today-special">
+    <section class="today-special">
 
     <div class="special-card">
 
         <h2>🔥 Today's Special</h2>
 
-        <img id="todaySpecialImage" src="" alt="Today's Special">
-        <h3 id="todaySpecialName">Loading...</h3>
+        <img 
+        id="todaySpecialImage" 
+        src="" 
+        alt="Today's Special">
+
+        <h3 id="todaySpecialName">
+            Loading...
+        </h3>
+
         <p id="todaySpecialDescription"></p>
-        <span id="todaySpecialPrice">₹0</span>
-    </div> 
+
+        <div class="special-info">
+
+            <span id="todaySpecialRating">
+                ⭐ 4.8
+            </span>
+
+            <span id="todaySpecialPrice">
+                ₹0
+            </span>
+
+        </div>
+
+    </div>
 
 </section>
-
 <!-- ================= CART SIDEBAR ================= -->
 
 <div id="cartSidebar" class="cart-sidebar">
@@ -339,9 +357,7 @@
                 Choose Screenshot
 
             </label>
-            <button class="upi-paid-btn" onclick="paymentDone()">
-    ✅ I've Paid
-</button>
+            
 
             <input
                 type="file"
@@ -406,39 +422,6 @@
 </div>
 
 <!-- ================= PRODUCT MODAL ================= -->
-
-<div id="productModal" class="modal">
-
-    <div class="modal-content">
-
-        <span id="closeModal">&times;</span>
-
-        <img
-            id="modalImage"
-            src=""
-            alt="Product">
-
-        <h2 id="modalName"></h2>
-
-        <p id="modalDescription"></p>
-
-        <div class="modal-info">
-
-            <span id="modalRating"></span>
-
-            <span id="modalPrice"></span>
-
-        </div>
-
-        <button id="modalAddBtn">
-
-            🛒 Add To Cart
-
-        </button>
-
-    </div>
-
-</div>
 
 <!-- ================= CONTACT ================= -->
 

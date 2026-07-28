@@ -1439,35 +1439,38 @@ document.addEventListener("DOMContentLoaded", () => {
 // SCROLL TO TOP
 // =========================================
 
-const scrollTopBtn =
-    document.getElementById("scrollTopBtn");
+const scrollBtn = document.getElementById("scrollTopBtn");
 
-if (scrollTopBtn) {
 
-    window.addEventListener("scroll", () => {
+window.addEventListener("scroll",()=>{
 
-        if (window.scrollY > 400) {
 
-            scrollTopBtn.style.display = "flex";
+    if(window.scrollY > 400){
 
-        } else {
+        scrollBtn.classList.add("show");
 
-            scrollTopBtn.style.display = "none";
+    }
 
-        }
+    else{
+
+        scrollBtn.classList.remove("show");
+
+    }
+
+
+});
+
+
+scrollBtn.addEventListener("click",()=>{
+
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
 
     });
 
-    scrollTopBtn.addEventListener("click", () => {
 
-        window.scrollTo({
-
-            top: 0,
-
-            behavior: "smooth"
-
-        });
-
-    });
-
-}
+});
