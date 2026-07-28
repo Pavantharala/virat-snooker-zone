@@ -11,7 +11,7 @@
 const products = [
 
     {
-        id: 10,
+        id: 1,
         name: "Egg Bhurji Plate",
         category: "Food",
         image: "assets/Egg-bhurji.jpg",
@@ -119,7 +119,7 @@ const products = [
     },
 
     {
-        id: 1,
+        id: 10,
         name: "Tea",
         category: "Drinks",
         image: "assets/chai.jpg",
@@ -214,7 +214,7 @@ const products = [
         description: "Fresh lemon juice."
     },
     {
-        id: 17,
+        id: 18,
         name: "Coffee",
         category: "Drinks",
         image: "assets/coffee.jpg",
