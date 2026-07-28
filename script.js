@@ -1117,8 +1117,19 @@ if (closeUPI && upiModal) {
 
 function openUPI() {
 
-    window.location.href =
-        "upi://pay?pa=paytmqr6simag@ptyes&pn=Virat Snooker Zone";
+    const isMobile =
+        /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (isMobile) {
+
+        window.location.href =
+            "upi://pay?pa=8paytmqr6simag@ptyes&pn=Virat Snooker Zone";
+
+    } else {
+
+        alert("Please scan the QR code using your mobile UPI app.");
+
+    }
 
 }
 
