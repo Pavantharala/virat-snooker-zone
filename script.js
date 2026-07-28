@@ -1105,12 +1105,14 @@ function placeOrder() {
 continueOrder.addEventListener("click", () => {
 
     currentOrderId = generateOrderNumber();
+    message += "🆔 Order ID : " + currentOrderId + "%0A%0A";
 
     let total = 0;
 
     let message = "🍽️ *Virat Snooker Zone*%0A%0A";
 
-    message += "Order Details%0A%0A";
+    message += "🆔 Order ID : " + currentOrderId + "%0A%0A";
+    message += "Order Details:%0A%0A";
 
     cart.forEach(item => {
 
@@ -1179,10 +1181,7 @@ function generateWaitingTime() {
 
 }
 
-function showSuccess() {
-
-    const waiting = generateWaitingTime();
-
+function showSuccess(waiting) {
     document.getElementById("orderNumber").innerHTML =
         "Order ID : <b>" + currentOrderId + "</b>";
 

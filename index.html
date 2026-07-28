@@ -302,20 +302,35 @@
         <h3>Virat Snooker Zone</h3>
 
         <p>
-            <strong>UPI ID :</strong>
-            8341924117@mbk
+            <strong>UPI ID :
+                paytmqr6simag@ptyes
+            </strong>
+            
         </p>
 
         <!-- Payment Screenshot -->
-        <h3>Attach Payment Screenshot</h3>
 
-        <input
+        <div class="payment-proof">
+            <h3>📸 Payment Confirmation (Optional)</h3>
+            <p class="payment-note">
+                After completing the payment, you may upload a screenshot.
+                It will help us verify your payment faster.
+            </p>
+
+            <label for="paymentSlip" class="upload-btn">
+                <i class="fs-solid fa-cloud-arrow-up"></i>
+                Upload Payment Screenshot
+            </label>
+
+            <input
             type="file"
             id="paymentSlip"
             accept="image/*">
 
-        <p id="fileName"></p>
-
+        <p id="fileName">
+            No screenshot selected
+        </p>
+</div>
         <button
             class="payment-btn"
             onclick="openUPI()">
