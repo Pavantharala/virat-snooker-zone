@@ -176,13 +176,25 @@ header{
     position:absolute;
     width:100%;
     left:0;
-    top:100;
+    top:100%;
     background:#1f1f1f;
     border-radius:12px;
     overflow:hidden;
     box-shadow:0 8px 20px rgba(0,0,0,.3);
     display:none;
     z-index:999;
+}
+
+.modal-content h2{
+    color:#222;
+}
+
+.modal-content p{
+    color:#555;
+}
+
+.modal-info{
+    color:#222;
 }
 
 .suggestion-item{
