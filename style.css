@@ -631,6 +631,7 @@ grid-template-columns:1fr;
         CART ICON
 =========================== */
 
+
 .cart-icon{
 
     position:relative;
@@ -1835,4 +1836,85 @@ html{
     font-weight:600;
     color:#0a7c3d;
     letter-spacing:0.5px;
+}
+
+/* ==========================
+   CART ITEM
+========================== */
+
+.cart-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px;
+    border-bottom:1px solid #eee;
+}
+
+/* Image */
+
+.cart-image{
+    width:55px;
+    height:55px;
+    object-fit:cover;
+    border-radius:8px;
+    flex-shrink:0;
+}
+
+/* Product details */
+
+.cart-info{
+    flex:1;
+}
+
+.cart-info h4{
+    margin:0;
+    font-size:15px;
+}
+
+.cart-info p{
+    margin:4px 0 0;
+    font-size:14px;
+    color:#666;
+}
+
+/* Quantity */
+
+.quantity-box{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.quantity-box button{
+    width:28px;
+    height:28px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    background:#ff6b00;
+    color:#fff;
+}
+
+.quantity-box span{
+    min-width:18px;
+    text-align:center;
+}
+
+/* Price */
+
+.cart-price{
+    font-weight:bold;
+    color:#ff6b00;
+    min-width:60px;
+    text-align:right;
+}
+
+/* Delete */
+
+.remove-btn{
+    border:none;
+    background:none;
+    color:red;
+    cursor:pointer;
+    font-size:18px;
 }

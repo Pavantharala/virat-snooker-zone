@@ -284,6 +284,8 @@
 
 <!-- ================= UPI PAYMENT MODAL ================= -->
 
+<!-- ================= UPI PAYMENT MODAL ================= -->
+
 <div id="upiModal" class="checkout-modal">
 
     <div class="checkout-box">
@@ -292,55 +294,79 @@
 
         <h2>📱 Scan & Pay</h2>
 
-        <p>Scan the QR Code using any UPI App</p>
+        <p class="upi-text">
+            Scan the QR code using any UPI app like
+            <strong>PhonePe, Google Pay, Paytm or BHIM.</strong>
+        </p>
 
         <img
             src="assets/IMG-20260728-WA0016.jpg"
             class="upi-qr"
             alt="UPI QR">
 
-        <h3>Virat Snooker Zone</h3>
+        <div class="upi-details">
 
-        <p>
-            <strong>UPI ID :
-                paytmqr6simag@ptyes
-            </strong>
-            
-        </p>
+            <h3>Virat Snooker Zone</h3>
 
-        <!-- Payment Screenshot -->
+            <p class="upi-id">
+
+                <strong>UPI ID</strong><br>
+
+                <span>paytmqr6simag@ptyes</span>
+
+            </p>
+
+        </div>
+
+        <!-- Optional Upload -->
 
         <div class="payment-proof">
-            <h3>📸 Payment Confirmation (Optional)</h3>
+
+            <h3>📸 Payment Screenshot (Optional)</h3>
+
             <p class="payment-note">
-                After completing the payment, you may upload a screenshot.
-                It will help us verify your payment faster.
+
+                Already completed your payment?
+
+                Uploading a screenshot is optional and only helps us verify your payment faster.
+
             </p>
 
             <label for="paymentSlip" class="upload-btn">
-                <i class="fs-solid fa-cloud-arrow-up"></i>
-                Upload Payment Screenshot
+
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                Choose Screenshot
+
             </label>
 
             <input
-            type="file"
-            id="paymentSlip"
-            accept="image/*">
+                type="file"
+                id="paymentSlip"
+                accept="image/*">
 
-        <p id="fileName">
-            No screenshot selected
-        </p>
-</div>
+            <p id="fileName">
+
+                No screenshot selected
+
+            </p>
+
+        </div>
+
         <button
             class="payment-btn"
             onclick="openUPI()">
-            💳 Pay Now
+
+            💳 Open UPI App
+
         </button>
 
         <button
             class="payment-btn whatsapp-btn"
             onclick="paymentDone()">
+
             ✅ I've Paid
+
         </button>
 
     </div>
@@ -349,19 +375,31 @@
 <!--Order Success-->
 
 <div id="successModal" class="checkout-modal">
-    <div class="checkout-box">
+
+    <div class="checkout-box success-box">
+
         <div class="success-icon">
+
             🎉
+
         </div>
+
         <h2>Order Confirmed</h2>
+
         <h3 id="orderNumber"></h3>
+
         <p id="waitingTime"></p>
+
         <button
-        class="payment-btn"
-        onclick="closeSuccess()">
-        Done
-      </button>
+            class="payment-btn"
+            onclick="closeSuccess()">
+
+            Done
+
+        </button>
+
     </div>
+
 </div>
 
 <!-- ================= PRODUCT MODAL ================= -->
@@ -476,19 +514,23 @@
 
         <div class="success-icon">
 
-            ✅
+            📲
 
         </div>
 
-        <h2>Order Ready!</h2>
+        <h2>Send Order</h2>
 
         <p>
 
-            Your order is ready to be sent on WhatsApp.
+            Click the button below to send your order directly to
+            <strong>Virat Snooker Zone</strong>
+            on WhatsApp.
 
         </p>
 
-        <button id="continueOrder">
+        <button
+            id="continueOrder"
+            onclick="continueWhatsAppOrder()">
 
             Continue to WhatsApp
 

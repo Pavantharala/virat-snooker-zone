@@ -266,7 +266,7 @@ function loadProducts(list = products) {
 
     if (!container) return;
 
-    if (list.length === 0) {
+    if (!Array.isArray(list) || list.length === 0) {
 
         container.innerHTML = `
             <h2 style="padding:40px;text-align:center;">
@@ -281,31 +281,28 @@ function loadProducts(list = products) {
 
     list.forEach(product => {
 
-        let badge = "";
+        const badge = product.bestseller
+            ? `<span class="tag">🔥 Best Seller</span>`
+            : "";
 
-        if (product.bestseller) {
-            badge = `<span class="tag">🔥 Best Seller</span>`;
-        }
-
-        let typeClass = "";
-
-        if (product.type === "Veg") {
-            typeClass = "veg";
-        } else if (product.type === "Non Veg") {
-            typeClass = "nonveg";
-        }
+        const typeClass =
+            product.type === "Veg"
+                ? "veg"
+                : product.type === "Non Veg"
+                ? "nonveg"
+                : "";
 
         html += `
-
         <div class="card">
 
             <div class="image-box"
                  onclick="openProduct(${product.id})">
 
                 <img
+                    loading="lazy"
                     src="${product.image}"
                     alt="${product.name}"
-                    onerror="this.src='assets/no-image.png'">
+                    onerror="this.onerror=null;this.src='assets/no-image.png';">
 
                 ${badge}
 
@@ -344,15 +341,13 @@ function loadProducts(list = products) {
             </div>
 
         </div>
-
         `;
-
     });
 
     container.innerHTML = html;
-
 }
 
+// Load Products
 loadProducts();
 
 
@@ -365,40 +360,32 @@ function filterProducts() {
     let filtered = [...products];
 
     if (selectedCategory !== "All") {
-
         filtered = filtered.filter(product =>
             product.category === selectedCategory
         );
-
     }
 
     if (selectedType !== "All") {
-
         filtered = filtered.filter(product =>
             product.type === selectedType
         );
-
     }
 
-    const keyword = search.value.trim().toLowerCase();
+    const keyword = search
+        ? search.value.trim().toLowerCase()
+        : "";
 
     if (keyword !== "") {
 
         filtered = filtered.filter(product =>
-
             product.name.toLowerCase().includes(keyword) ||
-
             product.description.toLowerCase().includes(keyword)
-
         );
 
     }
 
     loadProducts(filtered);
-
 }
-
-
 // =========================================
 // CATEGORY FILTER
 // =========================================
@@ -414,23 +401,26 @@ categoryButtons.forEach(button => {
         button.classList.add("active");
 
         selectedCategory = button.dataset.category;
-
         selectedType = "All";
 
         typeButtons.forEach(btn =>
             btn.classList.remove("active")
         );
 
-        if (
-            selectedCategory === "Food" ||
-            selectedCategory === "All"
-        ) {
+        if (typeFilter) {
 
-            typeFilter.style.display = "flex";
+            if (
+                selectedCategory === "Food" ||
+                selectedCategory === "All"
+            ) {
 
-        } else {
+                typeFilter.style.display = "flex";
 
-            typeFilter.style.display = "none";
+            } else {
+
+                typeFilter.style.display = "none";
+
+            }
 
         }
 
@@ -468,54 +458,54 @@ typeButtons.forEach(button => {
 // SEARCH
 // =========================================
 
-search.addEventListener("input", () => {
+if (search && suggestions) {
 
-    filterProducts();
+    search.addEventListener("input", () => {
 
-    const keyword = search.value.toLowerCase().trim();
+        filterProducts();
 
-    suggestions.innerHTML = "";
+        const keyword = search.value.trim().toLowerCase();
 
-    if (keyword === "") {
+        suggestions.innerHTML = "";
 
-        suggestions.style.display = "none";
-        return;
+        if (keyword === "") {
 
-    }
+            suggestions.style.display = "none";
+            return;
 
-    const result = products.filter(product =>
+        }
 
-        product.name.toLowerCase().includes(keyword)
+        const result = products.filter(product =>
+            product.name.toLowerCase().includes(keyword)
+        );
 
-    );
+        if (result.length === 0) {
 
-    if (result.length === 0) {
+            suggestions.innerHTML =
+                `<div class="suggestion-item">No Products Found</div>`;
 
-        suggestions.innerHTML =
-            `<div class="suggestion-item">No Products Found</div>`;
+        } else {
 
-    } else {
+            result.forEach(product => {
 
-        result.forEach(product => {
+                suggestions.innerHTML += `
+                    <div class="suggestion-item"
+                         onclick="selectProduct('${product.name.replace(/'/g, "\\'")}')">
 
-            suggestions.innerHTML += `
+                        ${product.name}
 
-            <div class="suggestion-item"
-                 onclick="selectProduct('${product.name}')">
+                    </div>
+                `;
 
-                ${product.name}
+            });
 
-            </div>
+        }
 
-            `;
+        suggestions.style.display = "block";
 
-        });
+    });
 
-    }
-
-    suggestions.style.display = "block";
-
-});
+}
 
 
 // =========================================
@@ -523,6 +513,8 @@ search.addEventListener("input", () => {
 // =========================================
 
 function selectProduct(name) {
+
+    if (!search || !suggestions) return;
 
     search.value = name;
 
@@ -537,9 +529,12 @@ function selectProduct(name) {
 // CLOSE SUGGESTIONS
 // =========================================
 
-document.addEventListener("click", e => {
+document.addEventListener("click", (e) => {
 
-    if (!e.target.closest(".search-container")) {
+    if (
+        suggestions &&
+        !e.target.closest(".search-container")
+    ) {
 
         suggestions.style.display = "none";
 
@@ -556,39 +551,64 @@ function openProduct(id) {
 
     const product = products.find(item => item.id === id);
 
-    if (!product) return;
+    if (!product || !modal) return;
 
-    modalImage.src = product.image;
+    if (modalImage) {
 
-    modalName.innerText = product.name;
+        modalImage.src = product.image;
 
-    modalDescription.innerText = product.description;
+        modalImage.onerror = function () {
+            this.src = "assets/no-image.png";
+        };
 
-    modalRating.innerText = "⭐ " + product.rating;
+    }
 
-    modalPrice.innerText = "₹" + product.price;
+    if (modalName)
+        modalName.innerText = product.name;
 
-    modalAddBtn.onclick = () => {
+    if (modalDescription)
+        modalDescription.innerText = product.description;
 
-        addToCart(id);
+    if (modalRating)
+        modalRating.innerText = "⭐ " + product.rating;
 
-        modal.classList.remove("active");
+    if (modalPrice)
+        modalPrice.innerText = "₹" + product.price;
 
-    };
+    if (modalAddBtn) {
+
+        modalAddBtn.onclick = () => {
+
+            addToCart(id);
+
+            modal.classList.remove("active");
+
+        };
+
+    }
 
     modal.classList.add("active");
 
 }
 
-closeModal.addEventListener("click", () => {
 
-    modal.classList.remove("active");
+// =========================================
+// CLOSE PRODUCT MODAL
+// =========================================
 
-});
+if (closeModal && modal) {
 
-window.addEventListener("click", e => {
+    closeModal.addEventListener("click", () => {
 
-    if (e.target === modal) {
+        modal.classList.remove("active");
+
+    });
+
+}
+
+window.addEventListener("click", (e) => {
+
+    if (modal && e.target === modal) {
 
         modal.classList.remove("active");
 
@@ -600,7 +620,13 @@ window.addEventListener("click", e => {
 // CART
 // =========================================
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cart = [];
+
+try {
+    cart = JSON.parse(localStorage.getItem("cart")) || [];
+} catch (error) {
+    cart = [];
+}
 
 const cartSidebar = document.getElementById("cartSidebar");
 const cartItems = document.getElementById("cartItems");
@@ -615,7 +641,9 @@ const closeCart = document.getElementById("closeCart");
 // =========================================
 
 function saveCart() {
+
     localStorage.setItem("cart", JSON.stringify(cart));
+
 }
 
 
@@ -645,9 +673,14 @@ function addToCart(id) {
     }
 
     saveCart();
+
     updateCart();
 
-    cartSidebar.classList.add("active");
+    if (cartSidebar) {
+
+        cartSidebar.classList.add("active");
+
+    }
 
 }
 
@@ -658,6 +691,8 @@ function addToCart(id) {
 
 function updateCart() {
 
+    if (!cartItems || !cartTotal || !cartCount) return;
+
     cartItems.innerHTML = "";
 
     let totalItems = 0;
@@ -666,17 +701,26 @@ function updateCart() {
     if (cart.length === 0) {
 
         cartItems.innerHTML = `
-            <p style="padding:25px;text-align:center;">
-                🛒 Your cart is empty.
-            </p>
+
+            <div class="empty-cart">
+
+                <h2>🛒</h2>
+
+                <p>Your cart is empty</p>
+
+                <small>Add some delicious food.</small>
+
+            </div>
+
         `;
 
-        cartCount.innerText = 0;
-        cartTotal.innerText = 0;
+        cartCount.innerText = "0";
+        cartTotal.innerText = "0";
 
         saveCart();
 
         return;
+
     }
 
     let html = "";
@@ -692,6 +736,12 @@ function updateCart() {
 
         <div class="cart-item">
 
+            <img
+                class="cart-image"
+                src="${item.image}"
+                alt="${item.name}"
+                onerror="this.onerror=null;this.src='assets/no-image.png';">
+
             <div class="cart-info">
 
                 <h4>${item.name}</h4>
@@ -702,8 +752,7 @@ function updateCart() {
 
             <div class="quantity-box">
 
-                <button
-                    onclick="decreaseQuantity(${item.id})">
+                <button onclick="decreaseQuantity(${item.id})">
 
                     −
 
@@ -711,8 +760,7 @@ function updateCart() {
 
                 <span>${item.quantity}</span>
 
-                <button
-                    onclick="increaseQuantity(${item.id})">
+                <button onclick="increaseQuantity(${item.id})">
 
                     +
 
@@ -750,7 +798,6 @@ function updateCart() {
 
 }
 
-
 // =========================================
 // REMOVE ITEM
 // =========================================
@@ -758,6 +805,8 @@ function updateCart() {
 function removeItem(id) {
 
     cart = cart.filter(item => item.id !== id);
+
+    saveCart();
 
     updateCart();
 
@@ -775,6 +824,8 @@ function increaseQuantity(id) {
     if (!item) return;
 
     item.quantity++;
+
+    saveCart();
 
     updateCart();
 
@@ -801,6 +852,8 @@ function decreaseQuantity(id) {
 
     }
 
+    saveCart();
+
     updateCart();
 
 }
@@ -810,31 +863,41 @@ function decreaseQuantity(id) {
 // OPEN CART
 // =========================================
 
-cartIcon.addEventListener("click", () => {
+if (cartIcon && cartSidebar) {
 
-    cartSidebar.classList.add("active");
+    cartIcon.addEventListener("click", () => {
 
-});
+        cartSidebar.classList.add("active");
+
+    });
+
+}
 
 
 // =========================================
 // CLOSE CART
 // =========================================
 
-closeCart.addEventListener("click", () => {
+if (closeCart && cartSidebar) {
 
-    cartSidebar.classList.remove("active");
+    closeCart.addEventListener("click", () => {
 
-});
+        cartSidebar.classList.remove("active");
+
+    });
+
+}
 
 
 // =========================================
-// CLOSE WHEN CLICKING OUTSIDE
+// CLOSE CART WHEN CLICKING OUTSIDE
 // =========================================
 
 window.addEventListener("click", (e) => {
 
     if (
+        cartSidebar &&
+        cartIcon &&
         cartSidebar.classList.contains("active") &&
         !cartSidebar.contains(e.target) &&
         !cartIcon.contains(e.target)
@@ -851,7 +914,12 @@ window.addEventListener("click", (e) => {
 // INITIALIZE CART
 // =========================================
 
-updateCart();
+document.addEventListener("DOMContentLoaded", () => {
+
+    updateCart();
+
+});
+
 
 // =========================================
 // CHECKOUT
@@ -868,28 +936,38 @@ const successModal = document.getElementById("successModal");
 const orderModal = document.getElementById("orderModal");
 const continueOrder = document.getElementById("continueOrder");
 
-// Payment Screenshot
 
-const paymentSlip =
-document.getElementById("paymentSlip");
+// =========================================
+// PAYMENT SCREENSHOT
+// =========================================
 
-const fileName =
-document.getElementById("fileName");
+const paymentSlip = document.getElementById("paymentSlip");
+const fileName = document.getElementById("fileName");
 
 let uploadedSlip = "";
 
-paymentSlip.addEventListener("change", function () {
+if (paymentSlip && fileName) {
 
-    if (this.files.length > 0) {
+    paymentSlip.addEventListener("change", function () {
 
-        uploadedSlip = this.files[0].name;
+        if (this.files && this.files.length > 0) {
 
-        fileName.innerHTML =
-        "✅ " + uploadedSlip;
+            uploadedSlip = this.files[0].name;
 
-    }
+            fileName.innerHTML = "✅ " + uploadedSlip;
 
-});
+        } else {
+
+            uploadedSlip = "";
+
+            fileName.innerHTML = "";
+
+        }
+
+    });
+
+}
+
 
 // =========================================
 // OPEN CHECKOUT
@@ -899,12 +977,17 @@ function openCheckout() {
 
     if (cart.length === 0) {
 
-        alert("Your cart is empty!");
+        alert("🛒 Your cart is empty!");
+
         return;
 
     }
 
-    checkoutModal.classList.add("active");
+    if (checkoutModal) {
+
+        checkoutModal.classList.add("active");
+
+    }
 
 }
 
@@ -913,12 +996,15 @@ function openCheckout() {
 // CLOSE CHECKOUT
 // =========================================
 
-closeCheckout.addEventListener("click", () => {
+if (closeCheckout && checkoutModal) {
 
-    checkoutModal.classList.remove("active");
+    closeCheckout.addEventListener("click", () => {
 
-});
+        checkoutModal.classList.remove("active");
 
+    });
+
+}
 // =========================================
 // ORDER ID
 // =========================================
@@ -937,7 +1023,7 @@ function generateOrderNumber() {
 function payAtCounter() {
 
     if (cart.length === 0) {
-        alert("Your cart is empty!");
+        alert("🛒 Your cart is empty!");
         return;
     }
 
@@ -952,6 +1038,7 @@ function payAtCounter() {
     cart.forEach(item => {
 
         const amount = item.price * item.quantity;
+
         total += amount;
 
         message += `🍔 ${item.name}%0A`;
@@ -965,7 +1052,6 @@ function payAtCounter() {
     message += `💰 Total : ₹${total}%0A`;
     message += "Payment Mode : Pay at Counter%0A";
 
-
     const phone = "919939393426";
 
     window.open(
@@ -973,14 +1059,22 @@ function payAtCounter() {
         "_blank"
     );
 
-    checkoutModal.classList.remove("active");
-    cartSidebar.classList.remove("active");
+    if (checkoutModal)
+        checkoutModal.classList.remove("active");
+
+    if (cartSidebar)
+        cartSidebar.classList.remove("active");
 
     cart = [];
+
+    saveCart();
+
     updateCart();
 
-    showSuccess();
+    showSuccess(generateWaitingTime());
+
 }
+
 
 // =========================================
 // OPEN UPI
@@ -988,9 +1082,16 @@ function payAtCounter() {
 
 function payUPI() {
 
-    checkoutModal.classList.remove("active");
+    if (cart.length === 0) {
+        alert("🛒 Your cart is empty!");
+        return;
+    }
 
-    upiModal.classList.add("active");
+    if (checkoutModal)
+        checkoutModal.classList.remove("active");
+
+    if (upiModal)
+        upiModal.classList.add("active");
 
 }
 
@@ -999,11 +1100,15 @@ function payUPI() {
 // CLOSE UPI
 // =========================================
 
-closeUPI.addEventListener("click", () => {
+if (closeUPI && upiModal) {
 
-    upiModal.classList.remove("active");
+    closeUPI.addEventListener("click", () => {
 
-});
+        upiModal.classList.remove("active");
+
+    });
+
+}
 
 
 // =========================================
@@ -1012,22 +1117,22 @@ closeUPI.addEventListener("click", () => {
 
 function openUPI() {
 
-    window.open(
-
-        "upi://pay?pa=8paytmqr6simag@ptyes&pn=Virat Snooker Zone",
-
-        "_self"
-
-    );
+    window.location.href =
+        "upi://pay?pa=paytmqr6simag@ptyes&pn=Virat Snooker Zone";
 
 }
 
 
 // =========================================
-// PAYMENT DONE
+// PAYMENT COMPLETED
 // =========================================
 
 function paymentDone() {
+
+    if (cart.length === 0) {
+        alert("🛒 Your cart is empty!");
+        return;
+    }
 
     currentOrderId = generateOrderNumber();
 
@@ -1035,9 +1140,10 @@ function paymentDone() {
 
     let message = "🍽️ *Virat Snooker Zone*%0A%0A";
     message += "✅ *UPI Payment Completed*%0A%0A";
-    message += "Order Details:%0A%0A";
+    message += "🆔 Order ID : " + currentOrderId + "%0A%0A";
 
     cart.forEach(item => {
+
         const amount = item.price * item.quantity;
 
         total += amount;
@@ -1047,10 +1153,9 @@ function paymentDone() {
         message += `Price : ₹${item.price}%0A`;
         message += `Amount : ₹${amount}%0A%0A`;
 
-
     });
 
-     message += "--------------------%0A";
+    message += "--------------------%0A";
     message += `💰 Total : ₹${total}%0A`;
     message += "--------------------%0A";
     message += "Payment Mode : UPI%0A";
@@ -1063,16 +1168,19 @@ function paymentDone() {
         "_blank"
     );
 
+    if (upiModal)
+        upiModal.classList.remove("active");
 
-    upiModal.classList.remove("active");
-
-    cartSidebar.classList.remove("active");
+    if (cartSidebar)
+        cartSidebar.classList.remove("active");
 
     cart = [];
 
+    saveCart();
+
     updateCart();
 
-    showSuccess();
+    showSuccess(generateWaitingTime());
 
 }
 
@@ -1085,15 +1193,17 @@ function placeOrder() {
 
     if (cart.length === 0) {
 
-        alert("Your cart is empty!");
+        alert("🛒 Your cart is empty!");
 
         return;
 
     }
 
-    checkoutModal.classList.remove("active");
+    if (checkoutModal)
+        checkoutModal.classList.remove("active");
 
-    orderModal.classList.add("active");
+    if (orderModal)
+        orderModal.classList.add("active");
 
 }
 
@@ -1102,95 +1212,107 @@ function placeOrder() {
 // CONTINUE TO WHATSAPP
 // =========================================
 
-continueOrder.addEventListener("click", () => {
+if (continueOrder) {
 
-    currentOrderId = generateOrderNumber();
-    message += "🆔 Order ID : " + currentOrderId + "%0A%0A";
+    continueOrder.addEventListener("click", () => {
 
-    let total = 0;
+        if (cart.length === 0) {
 
-    let message = "🍽️ *Virat Snooker Zone*%0A%0A";
+            alert("🛒 Your cart is empty!");
 
-    message += "🆔 Order ID : " + currentOrderId + "%0A%0A";
-    message += "Order Details:%0A%0A";
+            return;
 
-    cart.forEach(item => {
+        }
 
-        const amount = item.price * item.quantity;
+        currentOrderId = generateOrderNumber();
 
-        total += amount;
+        let total = 0;
 
-        message +=
-            `🍔 ${item.name}%0A`;
+        let message = "🍽️ *Virat Snooker Zone*%0A%0A";
 
-        message +=
-            `Qty : ${item.quantity}%0A`;
+        message += "🆔 Order ID : " + currentOrderId + "%0A%0A";
 
-        message +=
-            `Price : ₹${item.price}%0A`;
+        cart.forEach(item => {
 
-        message +=
-            `Amount : ₹${amount}%0A%0A`;
+            const amount = item.price * item.quantity;
+
+            total += amount;
+
+            message += `🍔 ${item.name}%0A`;
+            message += `Qty : ${item.quantity}%0A`;
+            message += `Price : ₹${item.price}%0A`;
+            message += `Amount : ₹${amount}%0A%0A`;
+
+        });
+
+        message += "--------------------%0A";
+        message += `💰 Total : ₹${total}%0A`;
+        message += "--------------------%0A";
+        message += "❤️ Thank You for your order!%0A";
+
+        const phone = "919939393426";
+
+        window.open(
+            `https://wa.me/${phone}?text=${message}`,
+            "_blank"
+        );
+
+        if (orderModal)
+            orderModal.classList.remove("active");
+
+        if (cartSidebar)
+            cartSidebar.classList.remove("active");
+
+        cart = [];
+
+        saveCart();
+
+        updateCart();
+
+        showSuccess(generateWaitingTime());
 
     });
 
-    message += "--------------------%0A";
-
-    message +=
-        `💰 Total : ₹${total}%0A`;
-
-    message += "--------------------%0A";
-
-    message +=
-        "Thank You ❤️";
-
-    const phone = "919939393426";
-
-    window.open(
-
-        `https://wa.me/${phone}?text=${message}`,
-
-        "_blank"
-
-    );
-
-    orderModal.classList.remove("active");
-
-    cartSidebar.classList.remove("active");
-
-    cart = [];
-
-    updateCart();
-
-    showSuccess();
-
-});
+}
 
 
 // =========================================
 // ORDER SUCCESS
 // =========================================
 
+const orderNumber = document.getElementById("orderNumber");
+const waitingTime = document.getElementById("waitingTime");
+
 function generateWaitingTime() {
 
-    return Math.floor(
-
-        Math.random() * 11
-
-    ) + 10;
+    return Math.floor(Math.random() * 11) + 10;
 
 }
 
 function showSuccess(waiting) {
-    document.getElementById("orderNumber").innerHTML =
-        "Order ID : <b>" + currentOrderId + "</b>";
 
-    document.getElementById("waitingTime").innerHTML =
-        "Estimated Preparation Time : <b>" +
-        waiting +
-        " Minutes</b>";
+    if (orderNumber) {
 
-    successModal.classList.add("active");
+        orderNumber.innerHTML =
+            "Order ID : <b>" + currentOrderId + "</b>";
+
+    }
+
+    if (waitingTime) {
+
+        waitingTime.innerHTML =
+            "Estimated Preparation Time : <b>" +
+            waiting +
+            " Minutes</b>";
+
+    }
+
+    if (successModal) {
+
+        successModal.classList.add("active");
+
+    }
+
 }
 
 
@@ -1200,32 +1322,34 @@ function showSuccess(waiting) {
 
 function closeSuccess() {
 
-    successModal.classList.remove("active");
+    if (successModal) {
+
+        successModal.classList.remove("active");
+
+    }
 
 }
-
-
 // =========================================
 // CLOSE MODALS WHEN CLICKING OUTSIDE
 // =========================================
 
 window.addEventListener("click", (e) => {
 
-    if (e.target === checkoutModal)
-
+    if (checkoutModal && e.target === checkoutModal) {
         checkoutModal.classList.remove("active");
+    }
 
-    if (e.target === upiModal)
-
+    if (upiModal && e.target === upiModal) {
         upiModal.classList.remove("active");
+    }
 
-    if (e.target === successModal)
-
+    if (successModal && e.target === successModal) {
         successModal.classList.remove("active");
+    }
 
-    if (e.target === orderModal)
-
+    if (orderModal && e.target === orderModal) {
         orderModal.classList.remove("active");
+    }
 
 });
 
@@ -1236,77 +1360,103 @@ window.addEventListener("click", (e) => {
 
 function loadTodaySpecial() {
 
-    const specials = products.filter(p => p.category === "Food");
+    const specials = products.filter(product =>
+        product.category === "Food"
+    );
 
     if (specials.length === 0) return;
 
-    const special = specials[new Date().getDate() % specials.length];
+    const special =
+        specials[new Date().getDate() % specials.length];
 
     const img = document.getElementById("todaySpecialImage");
     const name = document.getElementById("todaySpecialName");
     const description = document.getElementById("todaySpecialDescription");
     const price = document.getElementById("todaySpecialPrice");
 
-    if (img) img.src = special.image;
-    if (name) name.textContent = special.name;
-    if (description) description.textContent = special.description;
-    if (price) price.textContent = "₹" + special.price;
+    if (img) {
+
+        img.src = special.image;
+
+        img.onerror = function () {
+            this.src = "assets/no-image.png";
+        };
+
+    }
+
+    if (name)
+        name.textContent = special.name;
+
+    if (description)
+        description.textContent = special.description;
+
+    if (price)
+        price.textContent = "₹" + special.price;
+
 }
 
 loadTodaySpecial();
 
 
-
 // =========================================
 // PAGE LOADER
 // =========================================
-
 document.addEventListener("DOMContentLoaded", () => {
+
+    loadProducts();
+
+    updateCart();
+
+    loadTodaySpecial();
+
     const loader = document.getElementById("loader");
+
     if (loader) {
-        loader.classList.add("loader-hide");
+
+        setTimeout(() => {
+
+            loader.classList.add("loader-hide");
+
+            setTimeout(() => loader.remove(), 500);
+
+        }, 600);
+
     }
+
 });
-
-
-
 // =========================================
 // SCROLL TO TOP
 // =========================================
 
 const scrollTopBtn =
+    document.getElementById("scrollTopBtn");
 
-document.getElementById("scrollTopBtn");
+if (scrollTopBtn) {
 
-window.addEventListener("scroll", () => {
+    window.addEventListener("scroll", () => {
 
-    if (window.scrollY > 400) {
+        if (window.scrollY > 400) {
 
-        scrollTopBtn.style.display = "block";
+            scrollTopBtn.style.display = "flex";
 
-    }
+        } else {
 
-    else {
+            scrollTopBtn.style.display = "none";
 
-        scrollTopBtn.style.display = "none";
-
-    }
-
-});
-
-scrollTopBtn.addEventListener("click", () => {
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
+        }
 
     });
 
-});
+    scrollTopBtn.addEventListener("click", () => {
 
+        window.scrollTo({
 
-// =========================================
-// END
-// =========================================
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    });
+
+}
