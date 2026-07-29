@@ -983,14 +983,27 @@ function openCheckout() {
 
     }
 
+
+    // Close cart sidebar
+    if (cartSidebar) {
+
+        cartSidebar.classList.remove("active");
+
+    }
+
+
+    // Open checkout modal
     if (checkoutModal) {
 
         checkoutModal.classList.add("active");
 
     }
 
-}
 
+    // Disable background scrolling
+    document.body.style.overflow = "hidden";
+
+}
 
 // =========================================
 // CLOSE CHECKOUT
@@ -1002,9 +1015,12 @@ if (closeCheckout && checkoutModal) {
 
         checkoutModal.classList.remove("active");
 
+        document.body.style.overflow = "auto";
+
     });
 
 }
+
 // =========================================
 // ORDER ID
 // =========================================
@@ -1348,6 +1364,7 @@ window.addEventListener("click", (e) => {
 
     if (checkoutModal && e.target === checkoutModal) {
         checkoutModal.classList.remove("active");
+        document.body.style.overflow="auto";
     }
 
     if (upiModal && e.target === upiModal) {
