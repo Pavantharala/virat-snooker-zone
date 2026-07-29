@@ -3092,3 +3092,89 @@ body{
     }
 
 }
+
+/* =====================================
+   FINAL CART IMAGE SIZE FIX
+===================================== */
+
+.cart-items .cart-item img,
+.cart-image{
+
+    width:45px !important;
+    height:45px !important;
+
+    max-width:45px !important;
+    max-height:45px !important;
+
+    min-width:45px !important;
+
+    object-fit:cover !important;
+
+    border-radius:8px !important;
+
+    flex-shrink:0 !important;
+
+}
+
+
+/* Mobile extra compact */
+
+@media(max-width:768px){
+
+    .cart-items .cart-item img,
+    .cart-image{
+
+        width:40px !important;
+        height:40px !important;
+
+        max-width:40px !important;
+        max-height:40px !important;
+
+        min-width:40px !important;
+
+    }
+
+
+    .cart-item{
+
+        display:flex;
+
+        align-items:center;
+
+        gap:8px;
+
+        padding:8px 0;
+
+    }
+
+
+    .cart-info{
+
+        flex:1;
+
+        overflow:hidden;
+
+    }
+
+
+    .cart-info h4{
+
+        font-size:13px;
+
+        white-space:nowrap;
+
+        overflow:hidden;
+
+        text-overflow:ellipsis;
+
+    }
+
+
+    .cart-info p{
+
+        font-size:12px;
+
+    }
+
+
+}
