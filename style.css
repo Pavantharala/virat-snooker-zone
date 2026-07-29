@@ -2785,3 +2785,135 @@ footer{
     font-size:11px;
 
 }
+/* ==========================================
+   MOBILE STICKY HEADER + CART FIX
+========================================== */
+
+@media(max-width:768px){
+
+    body{
+        padding-top:75px;
+        overflow-x:hidden;
+    }
+
+
+    header{
+
+        position:fixed !important;
+
+        top:0;
+        left:0;
+
+        width:100%;
+
+        height:75px;
+
+        background:#ffffff;
+
+        z-index:99999;
+
+    }
+
+
+    .navbar{
+
+        height:75px;
+
+        width:100%;
+
+        padding:0 15px;
+
+        display:flex;
+
+        justify-content:space-between;
+
+        align-items:center;
+
+    }
+
+
+    .logo{
+
+        display:flex;
+
+        align-items:center;
+
+        gap:8px;
+
+    }
+
+
+    .logo img{
+
+        width:45px;
+        height:45px;
+
+    }
+
+
+    .logo-text h2{
+
+        font-size:18px;
+
+        white-space:nowrap;
+
+    }
+
+
+    .logo-text p{
+
+        display:block;
+
+        font-size:10px;
+
+    }
+
+
+    /* CART ALWAYS VISIBLE */
+
+    .cart-icon{
+
+        position:relative !important;
+
+        display:flex !important;
+
+        visibility:visible !important;
+
+        opacity:1 !important;
+
+        width:45px;
+
+        height:45px;
+
+        flex-shrink:0;
+
+    }
+
+}
+/* ==========================================
+   GALLERY & CUSTOMER REVIEW TITLE COLORS
+========================================== */
+
+
+/* Gallery title */
+
+.gallery-section .section-title h2,
+.gallery-title,
+#gallery h2{
+
+    color:#FC8019 !important;
+
+}
+
+
+
+/* Customer Review title */
+
+.review-section .section-title h2,
+.reviews .section-title h2,
+.review-title,
+#reviews h2{
+
+    color:#FFD54F !important;
+
+}
