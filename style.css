@@ -2772,3 +2772,13 @@ html{
 body{
     -ms-overflow-style:none;
 }
+
+.cart-items{
+    overflow-y:auto;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+}
+
+.cart-items::-webkit-scrollbar{
+    display:none;
+}
