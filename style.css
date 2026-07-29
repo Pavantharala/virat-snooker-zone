@@ -801,35 +801,36 @@ header{
 }
 
 /* ===================================
-        CART SIDEBAR
+        CART SIDEBAR FINAL FIX
 =================================== */
-
 
 .cart-sidebar{
 
     position:fixed;
 
     top:0;
-
     right:-420px;
 
     width:380px;
+    max-width:100%;
 
-    height:100%;
+    height:100vh;
 
     background:#1d1d1d;
 
     color:white;
 
-    z-index:9999;
+    z-index:999999;
 
     display:flex;
 
     flex-direction:column;
 
-    transition:.4s;
+    transition:right .35s ease;
 
-    box-shadow:-5px 0 25px rgba(0,0,0,.4);
+    box-shadow:-10px 0 30px rgba(0,0,0,.5);
+
+    overflow:hidden;
 
 }
 
@@ -842,15 +843,23 @@ header{
 
 
 
+/* CART HEADER */
+
 .cart-header{
 
+    height:75px;
+
     padding:20px;
+
+    flex-shrink:0;
 
     display:flex;
 
     justify-content:space-between;
 
     align-items:center;
+
+    background:#181818;
 
     border-bottom:1px solid #333;
 
@@ -861,18 +870,23 @@ header{
 
     color:#FC8019;
 
+    font-size:24px;
+
 }
+
 
 
 #closeCart{
 
-    font-size:30px;
+    font-size:32px;
 
     cursor:pointer;
 
 }
 
 
+
+/* CART PRODUCTS AREA */
 
 .cart-items{
 
@@ -883,6 +897,7 @@ header{
     padding:20px;
 
 }
+
 
 
 
@@ -902,122 +917,13 @@ header{
 
 
 
-.cart-image{
-
-    width:60px;
-
-    height:60px;
-
-    border-radius:10px;
-
-    object-fit:cover;
-
-}
-
-
-
-.cart-info{
-
-    flex:1;
-
-}
-
-
-.cart-info h4{
-
-    font-size:15px;
-
-}
-
-
-
-.cart-info p{
-
-    color:#aaa;
-
-    margin-top:5px;
-
-}
-
-
-
-.cart-price{
-
-    color:#FC8019;
-
-    font-weight:bold;
-
-}
-
-
-
-/* Quantity */
-
-
-.quantity-box{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    margin-top:8px;
-
-}
-
-
-.quantity-box button{
-
-    width:28px;
-
-    height:28px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:#FC8019;
-
-    color:white;
-
-    cursor:pointer;
-
-    font-size:18px;
-
-}
-
-
-.quantity-box span{
-
-    min-width:20px;
-
-    text-align:center;
-
-}
-
-
-
-.remove-btn{
-
-    background:none;
-
-    border:none;
-
-    color:red;
-
-    cursor:pointer;
-
-    font-size:18px;
-
-}
-
-
-
-/* Cart Footer */
-
+/* FOOTER ALWAYS VISIBLE */
 
 .cart-footer{
+
+    flex-shrink:0;
+
+    background:#111;
 
     padding:20px;
 
@@ -1031,9 +937,7 @@ header{
 
     width:100%;
 
-    padding:15px;
-
-    margin-top:15px;
+    height:52px;
 
     border:none;
 
@@ -1045,12 +949,65 @@ header{
 
     font-size:16px;
 
-    cursor:pointer;
+    font-weight:700;
 
-    font-weight:600;
+    cursor:pointer;
 
 }
 
+
+
+.checkout-btn:hover{
+
+    background:#ff6b00;
+
+}
+
+
+
+/* MOBILE CART */
+
+@media(max-width:768px){
+
+
+.cart-sidebar{
+
+    width:100%;
+
+    right:-100%;
+
+}
+
+
+.cart-sidebar.active{
+
+    right:0;
+
+}
+
+
+.cart-items{
+
+    padding:15px;
+
+}
+
+
+.cart-footer{
+
+    padding:15px;
+
+}
+
+
+.checkout-btn{
+
+    height:55px;
+
+}
+
+
+}
 
 
 
@@ -1192,17 +1149,6 @@ header{
     background:#25D366;
 
 }
-
-
-
-
-
-/* ===================================
-        UPI PAYMENT
-=================================== */
-/* ==============================
-        UPI MODAL IMPROVED UI
-============================== */
 
 
 /* QR CODE BIGGER */
@@ -1617,204 +1563,160 @@ header{
 }
 
 
-
-
-/* ===================================
-        ABOUT SECTION
-=================================== */
-
 /* ==========================================
-   PREMIUM ABOUT US DESIGN
+        PREMIUM ABOUT CONTENT BOX
 ========================================== */
 
-
-.about-section{
-
-    padding:80px 20px;
-
-    background:#121212;
-
+.about-content {
+    flex: 1;
+    order: 1;
+    background: linear-gradient(145deg, #1f1f1f, #151515);
+    padding: 40px;
+    border-radius: 30px;
+    border: 1px solid rgba(252, 128, 25, 0.25);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
 }
 
-
-.about-container{
-
-    max-width:1200px;
-
-    margin:auto;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:50px;
-
+/* Orange glow */
+.about-content::before {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: #FC8019;
+    filter: blur(100px);
+    opacity: 0.15;
+    top: -80px;
+    right: -80px;
 }
 
-
-
-/* Image */
-
-.about-image{
-
-    flex:1;
-
+/* Heading */
+.about-content h2 {
+    font-size: 45px;
+    color: #FC8019;
+    margin-bottom: 15px;
+    font-weight: 800;
+    position: relative;
 }
 
-
-.about-image img{
-
-    width:100%;
-
-    max-width:450px;
-
-    border-radius:25px;
-
-    box-shadow:
-    0 20px 50px rgba(0,0,0,.5);
-
+.about-content h3 {
+    font-size: 26px;
+    color: #FFD54F;
+    margin-bottom: 20px;
+    position: relative;
 }
 
-
-
-/* Content */
-
-.about-content{
-
-    flex:1;
-
+.about-content p {
+    color: #ddd;
+    font-size: 16px;
+    line-height: 1.8;
+    position: relative;
 }
 
+/* ==========================================
+        FEATURE HIGHLIGHT BOXES
+========================================== */
 
-
-.about-content h2{
-
-    color:#FC8019;
-
-    font-size:42px;
-
-    margin-bottom:15px;
-
+.about-features {
+    margin-top: 35px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
 }
 
-
-.about-content h3{
-
-    color:#FFD54F;
-
-    font-size:24px;
-
-    margin-bottom:20px;
-
+.about-feature {
+    background: linear-gradient(135deg, #FC8019, #ff9f43);
+    padding: 20px;
+    border-radius: 22px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 15px 35px rgba(252, 128, 25, 0.35);
+    transition: 0.4s;
+    position: relative;
+    overflow: hidden;
 }
 
-
-.about-content p{
-
-    color:#ccc;
-
-    line-height:1.8;
-
-    font-size:16px;
-
+.about-feature::after {
+    content: "";
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    background: white;
+    opacity: 0.15;
+    border-radius: 50%;
+    right: -30px;
+    bottom: -30px;
 }
 
-
-
-/* Feature cards */
-
-
-.about-features{
-
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:15px;
-
-    margin-top:30px;
-
+.about-feature:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 25px 50px rgba(252, 128, 25, 0.55);
 }
 
-
-.about-feature{
-
-    background:#1d1d1d;
-
-    padding:20px;
-
-    border-radius:18px;
-
-    text-align:center;
-
-    transition:.3s;
-
+.about-feature i {
+    font-size: 40px;
+    color: white;
+    margin-bottom: 12px;
 }
 
-
-
-.about-feature:hover{
-
-    transform:translateY(-8px);
-
-    background:#252525;
-
+.about-feature h4 {
+    font-size: 20px;
+    color: white;
+    margin-bottom: 8px;
 }
 
-
-.about-feature i{
-
-    font-size:30px;
-
-    color:#FC8019;
-
+.about-feature p {
+    color: white;
+    font-size: 13px;
+    opacity: 0.9;
 }
 
+/* ==========================================
+        IMAGE FIX NO OVERLAP
+========================================== */
 
-
-.about-feature h4{
-
-    margin-top:10px;
-
-    color:white;
-
+.about-image {
+    flex: 1;
+    order: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-
-.about-feature p{
-
-    font-size:13px;
-
+.about-image img {
+    width: 350px;
+    height: 330px;
+    object-fit: cover;
+    border-radius: 30px;
+    border: 3px solid #FC8019;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    transition: 0.4s;
 }
 
-
+.about-image img:hover {
+    transform: scale(1.05);
+}
 
 /* Mobile */
+@media (max-width: 768px) {
+    .about-content {
+        padding: 25px;
+    }
 
-@media(max-width:768px){
+    .about-content h2 {
+        font-size: 34px;
+    }
 
-.about-container{
+    .about-features {
+        grid-template-columns: 1fr;
+    }
 
-    flex-direction:column;
-
-    text-align:center;
-
-}
-
-
-.about-content h2{
-
-    font-size:32px;
-
-}
-
-
-.about-features{
-
-    grid-template-columns:1fr;
-
-}
-
+    .about-image img {
+        width: 280px;
+        height: 260px;
+    }
 }
 
 /* ===================================
@@ -3090,5 +2992,25 @@ footer{
         align-items:center;
 
     }
+
+}
+
+/* REMOVE RIGHT SIDE WHITE SPACE */
+
+html,
+body{
+
+    width:100%;
+
+    max-width:100%;
+
+    overflow-x:hidden !important;
+
+}
+
+
+.cart-sidebar{
+
+    overflow:hidden;
 
 }
