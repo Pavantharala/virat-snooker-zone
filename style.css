@@ -3015,31 +3015,58 @@ body{
 
 }
 
-/* ==========================================
-      MOBILE CART IMAGE SIZE FIX
-========================================== */
+/* =====================================
+   CART PRODUCT IMAGE MOBILE FIX
+===================================== */
+
+.cart-image{
+
+    width:55px !important;
+    height:55px !important;
+
+    min-width:55px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+}
+
+
+/* Cart item alignment */
+
+.cart-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+/* Mobile cart image smaller */
 
 @media(max-width:768px){
-
-    .cart-item{
-
-        gap:10px;
-        padding:12px 0;
-
-    }
-
 
     .cart-image{
 
         width:45px !important;
-
         height:45px !important;
+
+        min-width:45px;
 
         border-radius:8px;
 
-        object-fit:cover;
+    }
 
-        flex-shrink:0;
+
+    .cart-item{
+
+        padding:10px 0;
+
+        gap:8px;
 
     }
 
@@ -3059,46 +3086,6 @@ body{
 
 
     .cart-price{
-
-        font-size:13px;
-
-    }
-
-
-    .quantity-box button{
-
-        width:25px;
-
-        height:25px;
-
-        font-size:14px;
-
-    }
-
-
-    .quantity-box span{
-
-        font-size:13px;
-
-    }
-
-}
-
-
-/* Extra small mobile */
-
-@media(max-width:400px){
-
-    .cart-image{
-
-        width:38px !important;
-
-        height:38px !important;
-
-    }
-
-
-    .cart-info h4{
 
         font-size:13px;
 
