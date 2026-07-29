@@ -1623,20 +1623,25 @@ header{
         ABOUT SECTION
 =================================== */
 
+/* ==========================================
+   PREMIUM ABOUT US DESIGN
+========================================== */
+
 
 .about-section{
 
-    padding:80px 8%;
+    padding:80px 20px;
 
-    background:white;
-
-    color:#222;
+    background:#121212;
 
 }
 
 
+.about-container{
 
-.about-content{
+    max-width:1200px;
+
+    margin:auto;
 
     display:flex;
 
@@ -1644,75 +1649,11 @@ header{
 
     gap:50px;
 
-    flex-wrap:wrap;
-
 }
 
 
 
-.about-text{
-
-    flex:1;
-
-}
-
-
-
-.about-text h2{
-
-    color:#FC8019;
-
-    font-size:38px;
-
-    margin-bottom:20px;
-
-}
-
-
-
-.about-text p{
-
-    color:#555;
-
-    line-height:1.8;
-
-    margin-bottom:15px;
-
-}
-
-
-
-.about-features{
-
-    display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
-    gap:15px;
-
-    margin-top:25px;
-
-}
-
-
-
-.feature{
-
-    background:#FC8019;
-
-    color:white;
-
-    padding:15px;
-
-    border-radius:10px;
-
-    text-align:center;
-
-    font-weight:600;
-
-}
-
-
+/* Image */
 
 .about-image{
 
@@ -1721,14 +1662,158 @@ header{
 }
 
 
-
 .about-image img{
 
     width:100%;
 
-    max-width:500px;
+    max-width:450px;
 
-    border-radius:20px;
+    border-radius:25px;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.5);
+
+}
+
+
+
+/* Content */
+
+.about-content{
+
+    flex:1;
+
+}
+
+
+
+.about-content h2{
+
+    color:#FC8019;
+
+    font-size:42px;
+
+    margin-bottom:15px;
+
+}
+
+
+.about-content h3{
+
+    color:#FFD54F;
+
+    font-size:24px;
+
+    margin-bottom:20px;
+
+}
+
+
+.about-content p{
+
+    color:#ccc;
+
+    line-height:1.8;
+
+    font-size:16px;
+
+}
+
+
+
+/* Feature cards */
+
+
+.about-features{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:15px;
+
+    margin-top:30px;
+
+}
+
+
+.about-feature{
+
+    background:#1d1d1d;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+
+
+.about-feature:hover{
+
+    transform:translateY(-8px);
+
+    background:#252525;
+
+}
+
+
+.about-feature i{
+
+    font-size:30px;
+
+    color:#FC8019;
+
+}
+
+
+
+.about-feature h4{
+
+    margin-top:10px;
+
+    color:white;
+
+}
+
+
+.about-feature p{
+
+    font-size:13px;
+
+}
+
+
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.about-container{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+
+.about-content h2{
+
+    font-size:32px;
+
+}
+
+
+.about-features{
+
+    grid-template-columns:1fr;
+
+}
 
 }
 
@@ -2915,5 +3000,95 @@ footer{
 #reviews h2{
 
     color:black !important;
+
+}
+
+/* ==========================================
+   CART BUTTON COVER FIX
+========================================== */
+
+.cart-sidebar{
+
+    display:flex;
+    flex-direction:column;
+
+    height:100dvh;
+
+}
+
+
+/* Cart header fixed area */
+
+.cart-header{
+
+    flex-shrink:0;
+
+}
+
+
+
+/* Products scroll area */
+
+.cart-items{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    padding-bottom:20px;
+
+}
+
+
+
+/* Bottom checkout always visible */
+
+.cart-footer{
+
+    flex-shrink:0;
+
+    position:relative;
+
+    bottom:0;
+
+    width:100%;
+
+    background:#181818;
+
+    z-index:10;
+
+}
+
+
+
+/* Mobile cart fix */
+
+@media(max-width:768px){
+
+    .cart-sidebar{
+
+        height:100dvh;
+
+    }
+
+
+    .cart-footer{
+
+        padding:15px;
+
+    }
+
+
+    .checkout-btn{
+
+        height:50px;
+
+        display:flex;
+
+        justify-content:center;
+
+        align-items:center;
+
+    }
 
 }
