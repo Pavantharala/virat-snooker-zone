@@ -30,7 +30,7 @@ const products = [
         price: 120,
         rating: 4.8,
         type: "Veg",
-        bestseller: false,
+        bestseller: true,
         description: "Golden crispy French fries served hot."
     },
 
