@@ -829,7 +829,7 @@ let currentOrderId = "";
 
 if (paidBtn) {
 
-    paidBtn.disabled = true;
+    paidBtn.disabled = false;
 
 }
 
