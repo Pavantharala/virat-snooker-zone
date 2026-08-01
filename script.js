@@ -935,7 +935,7 @@ const successModal = document.getElementById("successModal");
 
 const orderModal = document.getElementById("orderModal");
 const continueOrder = document.getElementById("continueOrder");
-
+const paidBtn = document.getElementById("paidBtn");
 
 // =========================================
 // PAYMENT SCREENSHOT
@@ -950,18 +950,28 @@ if (paymentSlip && fileName) {
 
     paymentSlip.addEventListener("change", function () {
 
+        if (paymentSlip && fileName && paidBtn) {
+
+    // Disable button initially
+    paidBtn.disabled = true;
+
+    paymentSlip.addEventListener("change", function () {
+
         if (this.files && this.files.length > 0) {
 
             uploadedSlip = this.files[0].name;
-
             fileName.innerHTML = "✅ " + uploadedSlip;
+
+            // Enable button after screenshot selected
+            paidBtn.disabled = false;
 
         } else {
 
             uploadedSlip = "";
-
             fileName.innerHTML = "";
 
+            // Disable again
+            paidBtn.disabled = true;
         }
 
     });
@@ -1087,7 +1097,12 @@ function payAtCounter() {
 
     updateCart();
 
+    checkoutModal.classList.remove("active");
+    upiModal.classList.remove("active");
+    orderModal.classList.remove("active");
+    document.body.style.overflow = "auto";
     showSuccess(generateWaitingTime());
+
 
 }
 
@@ -1133,17 +1148,29 @@ if (closeUPI && upiModal) {
 
 function openUPI() {
 
+    const upiId = "8978833557-2@ybl";
+    const name = "Virat Snooker Zone";
+
+    const total = cart.reduce((sum, item) => {
+        return sum + item.price * item.quantity;
+    }, 0);
+
+    const upiLink =
+        `upi://pay?pa=${upiId}` +
+        `&pn=${encodeURIComponent(name)}` +
+        `&am=${total}` +
+        `&cu=INR`;
+
     const isMobile =
         /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
     if (isMobile) {
 
-        window.location.href =
-            "upi://pay?pa=8paytmqr6simag@ptyes&pn=Virat Snooker Zone";
+        window.open(upiLink, "_self");
 
     } else {
 
-        alert("Please scan the QR code using your mobile UPI app.");
+        alert("Please scan the QR code using your mobile.");
 
     }
 
@@ -1207,6 +1234,10 @@ function paymentDone() {
 
     updateCart();
 
+    checkoutModal.classList.remove("active");
+    upiModal.classList.remove("active");
+    orderModal.classList.remove("active");
+    document.body.style.overflow = "auto";
     showSuccess(generateWaitingTime());
 
 }
@@ -1284,6 +1315,10 @@ if (continueOrder) {
             "_blank"
         );
 
+        orderModal.classList.remove("active");
+
+        document.body.style.overflow="auto";
+
         if (orderModal)
             orderModal.classList.remove("active");
 
@@ -1342,6 +1377,11 @@ function showSuccess(waiting) {
 
 }
 
+uploadedSlip = "";
+
+paymentSlip.value = "";
+
+fileName.innerHTML = "No screenshot selected";
 
 // =========================================
 // CLOSE SUCCESS

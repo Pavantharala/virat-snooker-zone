@@ -313,9 +313,28 @@
         <h2>📱 Scan & Pay</h2>
 
         <p class="upi-text">
-            Scan the QR code using any UPI app like
-            <strong>PhonePe, Google Pay, Paytm or BHIM.</strong>
-        </p>
+    Scan the QR code using any UPI app like
+    <strong>PhonePe, Google Pay, Paytm or BHIM.</strong>
+</p>
+
+<div class="payment-note-box">
+
+    <h3>⚠️ Important</h3>
+
+    <p>
+        This QR code does not automatically fill the payment amount.
+    </p>
+
+    <p>
+        Please enter your <strong>Total Bill Amount</strong> manually in your UPI app before making the payment.
+    </p>
+
+    <p>
+        After successful payment, click <strong>"I've Paid"</strong> to send your order.
+    </p>
+
+    </div>
+
 
         <img
             src="assets\WhatsApp Image 2026-08-01 at 2.41.18 PM.jpeg"
@@ -381,6 +400,7 @@
         </button>
 
         <button
+            id="paidBtn"
             class="payment-btn whatsapp-btn"
             onclick="paymentDone()">
 

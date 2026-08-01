@@ -3404,3 +3404,56 @@ body{
     transform:scale(1.08);
 
 }
+
+.cart-sidebar{
+
+transform:translateX(100%);
+transition:.35s ease;
+
+}
+
+.cart-sidebar.active{
+
+transform:translateX(0);
+
+}
+
+.image-box img{
+
+transition:.35s;
+
+}
+
+.card:hover img{
+
+transform:scale(1.08);
+
+}
+
+.payment-note-box{
+
+    background:#fff8e1;
+    border-left:5px solid #ff9800;
+    border-radius:12px;
+    padding:15px;
+    margin:15px 0;
+    text-align:left;
+
+}
+
+.payment-note-box h3{
+
+    margin-bottom:10px;
+    color:#ff9800;
+    font-size:18px;
+
+}
+
+.payment-note-box p{
+
+    margin:8px 0;
+    color:#333;
+    font-size:14px;
+    line-height:1.6;
+
+}
