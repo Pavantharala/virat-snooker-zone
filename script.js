@@ -227,7 +227,6 @@ const products = [
 
 ];
 
-
 // =========================================
 // DOM ELEMENTS
 // =========================================
@@ -249,14 +248,12 @@ const modalPrice = document.getElementById("modalPrice");
 const modalAddBtn = document.getElementById("modalAddBtn");
 const closeModal = document.getElementById("closeModal");
 
-
 // =========================================
 // GLOBAL VARIABLES
 // =========================================
 
 let selectedCategory = "All";
 let selectedType = "All";
-
 
 // =========================================
 // LOAD PRODUCTS
@@ -266,10 +263,10 @@ function loadProducts(list = products) {
 
     if (!container) return;
 
-    if (!Array.isArray(list) || list.length === 0) {
+    if (list.length === 0) {
 
         container.innerHTML = `
-            <h2 style="padding:40px;text-align:center;">
+            <h2 style="text-align:center;padding:40px;">
                 😔 No Products Found
             </h2>
         `;
@@ -293,16 +290,16 @@ function loadProducts(list = products) {
                 : "";
 
         html += `
+
         <div class="card">
 
-            <div class="image-box"
-                 onclick="openProduct(${product.id})">
+            <div class="image-box" onclick="openProduct(${product.id})">
 
                 <img
                     loading="lazy"
                     src="${product.image}"
                     alt="${product.name}"
-                    onerror="this.onerror=null;this.src='assets/no-image.png';">
+                    onerror="this.src='assets/no-image.png'">
 
                 ${badge}
 
@@ -314,11 +311,7 @@ function loadProducts(list = products) {
 
                     <h3>${product.name}</h3>
 
-                    ${
-                        typeClass
-                        ? `<span class="${typeClass}"></span>`
-                        : ""
-                    }
+                    ${typeClass ? `<span class="${typeClass}"></span>` : ""}
 
                 </div>
 
@@ -341,15 +334,16 @@ function loadProducts(list = products) {
             </div>
 
         </div>
+
         `;
+
     });
 
     container.innerHTML = html;
+
 }
 
-// Load Products
 loadProducts();
-
 
 // =========================================
 // FILTER PRODUCTS
@@ -360,34 +354,41 @@ function filterProducts() {
     let filtered = [...products];
 
     if (selectedCategory !== "All") {
-        filtered = filtered.filter(product =>
-            product.category === selectedCategory
+
+        filtered = filtered.filter(
+            p => p.category === selectedCategory
         );
+
     }
 
     if (selectedType !== "All") {
-        filtered = filtered.filter(product =>
-            product.type === selectedType
+
+        filtered = filtered.filter(
+            p => p.type === selectedType
         );
+
     }
 
-    const keyword = search
-        ? search.value.trim().toLowerCase()
-        : "";
+    const keyword = search.value.trim().toLowerCase();
 
     if (keyword !== "") {
 
         filtered = filtered.filter(product =>
+
             product.name.toLowerCase().includes(keyword) ||
+
             product.description.toLowerCase().includes(keyword)
+
         );
 
     }
 
     loadProducts(filtered);
+
 }
+
 // =========================================
-// CATEGORY FILTER
+// CATEGORY BUTTONS
 // =========================================
 
 categoryButtons.forEach(button => {
@@ -401,6 +402,7 @@ categoryButtons.forEach(button => {
         button.classList.add("active");
 
         selectedCategory = button.dataset.category;
+
         selectedType = "All";
 
         typeButtons.forEach(btn =>
@@ -430,9 +432,8 @@ categoryButtons.forEach(button => {
 
 });
 
-
 // =========================================
-// VEG / NON VEG FILTER
+// VEG / NON VEG
 // =========================================
 
 typeButtons.forEach(button => {
@@ -453,68 +454,64 @@ typeButtons.forEach(button => {
 
 });
 
-
 // =========================================
 // SEARCH
 // =========================================
 
-if (search && suggestions) {
+search.addEventListener("input", () => {
 
-    search.addEventListener("input", () => {
+    filterProducts();
 
-        filterProducts();
+    const keyword = search.value.trim().toLowerCase();
 
-        const keyword = search.value.trim().toLowerCase();
+    suggestions.innerHTML = "";
 
-        suggestions.innerHTML = "";
+    if (keyword === "") {
 
-        if (keyword === "") {
+        suggestions.style.display = "none";
 
-            suggestions.style.display = "none";
-            return;
+        return;
 
-        }
+    }
 
-        const result = products.filter(product =>
-            product.name.toLowerCase().includes(keyword)
-        );
+    const result = products.filter(product =>
+        product.name.toLowerCase().includes(keyword)
+    );
 
-        if (result.length === 0) {
+    if (result.length === 0) {
 
-            suggestions.innerHTML =
-                `<div class="suggestion-item">No Products Found</div>`;
+        suggestions.innerHTML =
+            `<div class="suggestion-item">No Products Found</div>`;
 
-        } else {
+    } else {
 
-            result.forEach(product => {
+        result.forEach(product => {
 
-                suggestions.innerHTML += `
-                    <div class="suggestion-item"
-                         onclick="selectProduct('${product.name.replace(/'/g, "\\'")}')">
+            suggestions.innerHTML += `
 
-                        ${product.name}
+            <div
+                class="suggestion-item"
+                onclick="selectProduct('${product.name.replace(/'/g, "\\'")}')">
 
-                    </div>
-                `;
+                ${product.name}
 
-            });
+            </div>
 
-        }
+            `;
 
-        suggestions.style.display = "block";
+        });
 
-    });
+    }
 
-}
+    suggestions.style.display = "block";
 
+});
 
 // =========================================
 // SELECT PRODUCT
 // =========================================
 
 function selectProduct(name) {
-
-    if (!search || !suggestions) return;
 
     search.value = name;
 
@@ -524,93 +521,11 @@ function selectProduct(name) {
 
 }
 
+document.addEventListener("click", e => {
 
-// =========================================
-// CLOSE SUGGESTIONS
-// =========================================
-
-document.addEventListener("click", (e) => {
-
-    if (
-        suggestions &&
-        !e.target.closest(".search-container")
-    ) {
+    if (!e.target.closest(".search-container")) {
 
         suggestions.style.display = "none";
-
-    }
-
-});
-
-
-// =========================================
-// PRODUCT POPUP
-// =========================================
-
-function openProduct(id) {
-
-    const product = products.find(item => item.id === id);
-
-    if (!product || !modal) return;
-
-    if (modalImage) {
-
-        modalImage.src = product.image;
-
-        modalImage.onerror = function () {
-            this.src = "assets/no-image.png";
-        };
-
-    }
-
-    if (modalName)
-        modalName.innerText = product.name;
-
-    if (modalDescription)
-        modalDescription.innerText = product.description;
-
-    if (modalRating)
-        modalRating.innerText = "⭐ " + product.rating;
-
-    if (modalPrice)
-        modalPrice.innerText = "₹" + product.price;
-
-    if (modalAddBtn) {
-
-        modalAddBtn.onclick = () => {
-
-            addToCart(id);
-
-            modal.classList.remove("active");
-
-        };
-
-    }
-
-    modal.classList.add("active");
-
-}
-
-
-// =========================================
-// CLOSE PRODUCT MODAL
-// =========================================
-
-if (closeModal && modal) {
-
-    closeModal.addEventListener("click", () => {
-
-        modal.classList.remove("active");
-
-    });
-
-}
-
-window.addEventListener("click", (e) => {
-
-    if (modal && e.target === modal) {
-
-        modal.classList.remove("active");
 
     }
 
@@ -620,13 +535,7 @@ window.addEventListener("click", (e) => {
 // CART
 // =========================================
 
-let cart = [];
-
-try {
-    cart = JSON.parse(localStorage.getItem("cart")) || [];
-} catch (error) {
-    cart = [];
-}
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 const cartSidebar = document.getElementById("cartSidebar");
 const cartItems = document.getElementById("cartItems");
@@ -634,7 +543,6 @@ const cartTotal = document.getElementById("cartTotal");
 const cartCount = document.getElementById("cartCount");
 const cartIcon = document.querySelector(".cart-icon");
 const closeCart = document.getElementById("closeCart");
-
 
 // =========================================
 // SAVE CART
@@ -645,7 +553,6 @@ function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
 
 }
-
 
 // =========================================
 // ADD TO CART
@@ -676,22 +583,15 @@ function addToCart(id) {
 
     updateCart();
 
-    if (cartSidebar) {
-
-        cartSidebar.classList.add("active");
-
-    }
+    cartSidebar.classList.add("active");
 
 }
-
 
 // =========================================
 // UPDATE CART
 // =========================================
 
 function updateCart() {
-
-    if (!cartItems || !cartTotal || !cartCount) return;
 
     cartItems.innerHTML = "";
 
@@ -702,15 +602,15 @@ function updateCart() {
 
         cartItems.innerHTML = `
 
-            <div class="empty-cart">
+        <div class="empty-cart">
 
-                <h2>🛒</h2>
+            <h2>🛒</h2>
 
-                <p>Your cart is empty</p>
+            <p>Your cart is empty</p>
 
-                <small>Add some delicious food.</small>
+            <small>Add some delicious food.</small>
 
-            </div>
+        </div>
 
         `;
 
@@ -723,16 +623,15 @@ function updateCart() {
 
     }
 
-    let html = "";
-
     cart.forEach(item => {
+
+        totalItems += item.quantity;
 
         const amount = item.price * item.quantity;
 
-        totalItems += item.quantity;
         totalPrice += amount;
 
-        html += `
+        cartItems.innerHTML += `
 
         <div class="cart-item">
 
@@ -740,7 +639,7 @@ function updateCart() {
                 class="cart-image"
                 src="${item.image}"
                 alt="${item.name}"
-                onerror="this.onerror=null;this.src='assets/no-image.png';">
+                onerror="this.src='assets/no-image.png'">
 
             <div class="cart-info">
 
@@ -753,17 +652,13 @@ function updateCart() {
             <div class="quantity-box">
 
                 <button onclick="decreaseQuantity(${item.id})">
-
                     −
-
                 </button>
 
                 <span>${item.quantity}</span>
 
                 <button onclick="increaseQuantity(${item.id})">
-
                     +
-
                 </button>
 
             </div>
@@ -788,8 +683,6 @@ function updateCart() {
 
     });
 
-    cartItems.innerHTML = html;
-
     cartCount.innerText = totalItems;
 
     cartTotal.innerText = totalPrice;
@@ -812,14 +705,13 @@ function removeItem(id) {
 
 }
 
-
 // =========================================
 // INCREASE QUANTITY
 // =========================================
 
 function increaseQuantity(id) {
 
-    const item = cart.find(product => product.id === id);
+    const item = cart.find(item => item.id === id);
 
     if (!item) return;
 
@@ -831,14 +723,13 @@ function increaseQuantity(id) {
 
 }
 
-
 // =========================================
 // DECREASE QUANTITY
 // =========================================
 
 function decreaseQuantity(id) {
 
-    const item = cart.find(product => product.id === id);
+    const item = cart.find(item => item.id === id);
 
     if (!item) return;
 
@@ -858,49 +749,40 @@ function decreaseQuantity(id) {
 
 }
 
-
 // =========================================
 // OPEN CART
 // =========================================
 
-if (cartIcon && cartSidebar) {
+cartIcon.addEventListener("click", () => {
 
-    cartIcon.addEventListener("click", () => {
+    cartSidebar.classList.add("active");
 
-        cartSidebar.classList.add("active");
-
-    });
-
-}
-
+});
 
 // =========================================
 // CLOSE CART
 // =========================================
 
-if (closeCart && cartSidebar) {
+closeCart.addEventListener("click", () => {
 
-    closeCart.addEventListener("click", () => {
+    cartSidebar.classList.remove("active");
 
-        cartSidebar.classList.remove("active");
-
-    });
-
-}
-
+});
 
 // =========================================
-// CLOSE CART WHEN CLICKING OUTSIDE
+// CLOSE WHEN CLICKING OUTSIDE
 // =========================================
 
-window.addEventListener("click", (e) => {
+window.addEventListener("click", e => {
 
     if (
-        cartSidebar &&
-        cartIcon &&
+
         cartSidebar.classList.contains("active") &&
+
         !cartSidebar.contains(e.target) &&
+
         !cartIcon.contains(e.target)
+
     ) {
 
         cartSidebar.classList.remove("active");
@@ -908,7 +790,6 @@ window.addEventListener("click", (e) => {
     }
 
 });
-
 
 // =========================================
 // INITIALIZE CART
@@ -919,7 +800,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCart();
 
 });
-
 
 // =========================================
 // CHECKOUT
@@ -935,49 +815,67 @@ const successModal = document.getElementById("successModal");
 
 const orderModal = document.getElementById("orderModal");
 const continueOrder = document.getElementById("continueOrder");
+
+const paymentSlip = document.getElementById("paymentSlip");
+const fileName = document.getElementById("fileName");
 const paidBtn = document.getElementById("paidBtn");
+
+let uploadedSlip = "";
+let currentOrderId = "";
 
 // =========================================
 // PAYMENT SCREENSHOT
 // =========================================
 
-const paymentSlip = document.getElementById("paymentSlip");
-const fileName = document.getElementById("fileName");
+if (paidBtn) {
 
-let uploadedSlip = "";
-
-if (paymentSlip && fileName) {
-
-    paymentSlip.addEventListener("change", function () {
-
-        if (paymentSlip && fileName && paidBtn) {
-
-    // Disable button initially
     paidBtn.disabled = true;
 
+}
+
+if (paymentSlip) {
+
     paymentSlip.addEventListener("change", function () {
 
-        if (this.files && this.files.length > 0) {
+        if (this.files.length > 0) {
 
             uploadedSlip = this.files[0].name;
+
             fileName.innerHTML = "✅ " + uploadedSlip;
 
-            // Enable button after screenshot selected
-            paidBtn.disabled = false;
+            if (paidBtn)
+                paidBtn.disabled = false;
 
         } else {
 
             uploadedSlip = "";
-            fileName.innerHTML = "";
 
-            // Disable again
-            paidBtn.disabled = true;
+            fileName.innerHTML = "No screenshot selected";
+
+            if (paidBtn)
+                paidBtn.disabled = true;
+
         }
 
     });
 
 }
 
+// =========================================
+// ORDER NUMBER
+// =========================================
+
+function generateOrderNumber() {
+
+    return "VSZ-" + Date.now().toString().slice(-6);
+
+}
+
+function generateWaitingTime() {
+
+    return Math.floor(Math.random() * 11) + 10;
+
+}
 
 // =========================================
 // OPEN CHECKOUT
@@ -993,24 +891,10 @@ function openCheckout() {
 
     }
 
+    cartSidebar.classList.remove("active");
 
-    // Close cart sidebar
-    if (cartSidebar) {
+    checkoutModal.classList.add("active");
 
-        cartSidebar.classList.remove("active");
-
-    }
-
-
-    // Open checkout modal
-    if (checkoutModal) {
-
-        checkoutModal.classList.add("active");
-
-    }
-
-
-    // Disable background scrolling
     document.body.style.overflow = "hidden";
 
 }
@@ -1019,28 +903,13 @@ function openCheckout() {
 // CLOSE CHECKOUT
 // =========================================
 
-if (closeCheckout && checkoutModal) {
+closeCheckout.addEventListener("click", () => {
 
-    closeCheckout.addEventListener("click", () => {
+    checkoutModal.classList.remove("active");
 
-        checkoutModal.classList.remove("active");
+    document.body.style.overflow = "auto";
 
-        document.body.style.overflow = "auto";
-
-    });
-
-}
-
-// =========================================
-// ORDER ID
-// =========================================
-
-let currentOrderId = "";
-
-function generateOrderNumber() {
-    return "VSZ-" + Date.now().toString().slice(-6);
-}
-
+});
 
 // =========================================
 // PAY AT COUNTER
@@ -1048,64 +917,9 @@ function generateOrderNumber() {
 
 function payAtCounter() {
 
-    if (cart.length === 0) {
-        alert("🛒 Your cart is empty!");
-        return;
-    }
-
-    currentOrderId = generateOrderNumber();
-
-    let total = 0;
-
-    let message = "🍽️ *Virat Snooker Zone*%0A%0A";
-    message += "🛎️ *New Order*%0A%0A";
-    message += "🆔 Order ID : " + currentOrderId + "%0A%0A";
-
-    cart.forEach(item => {
-
-        const amount = item.price * item.quantity;
-
-        total += amount;
-
-        message += `🍔 ${item.name}%0A`;
-        message += `Qty : ${item.quantity}%0A`;
-        message += `Price : ₹${item.price}%0A`;
-        message += `Amount : ₹${amount}%0A%0A`;
-
-    });
-
-    message += "------------------------%0A";
-    message += `💰 Total : ₹${total}%0A`;
-    message += "Payment Mode : Pay at Counter%0A";
-
-    const phone = "919939393426";
-
-    window.open(
-        `https://wa.me/${phone}?text=${message}`,
-        "_blank"
-    );
-
-    if (checkoutModal)
-        checkoutModal.classList.remove("active");
-
-    if (cartSidebar)
-        cartSidebar.classList.remove("active");
-
-    cart = [];
-
-    saveCart();
-
-    updateCart();
-
-    checkoutModal.classList.remove("active");
-    upiModal.classList.remove("active");
-    orderModal.classList.remove("active");
-    document.body.style.overflow = "auto";
-    showSuccess(generateWaitingTime());
-
+    sendOrder("Pay at Counter");
 
 }
-
 
 // =========================================
 // OPEN UPI
@@ -1113,34 +927,23 @@ function payAtCounter() {
 
 function payUPI() {
 
-    if (cart.length === 0) {
-        alert("🛒 Your cart is empty!");
-        return;
-    }
+    checkoutModal.classList.remove("active");
 
-    if (checkoutModal)
-        checkoutModal.classList.remove("active");
-
-    if (upiModal)
-        upiModal.classList.add("active");
+    upiModal.classList.add("active");
 
 }
-
 
 // =========================================
 // CLOSE UPI
 // =========================================
 
-if (closeUPI && upiModal) {
+closeUPI.addEventListener("click", () => {
 
-    closeUPI.addEventListener("click", () => {
+    upiModal.classList.remove("active");
 
-        upiModal.classList.remove("active");
+    document.body.style.overflow = "auto";
 
-    });
-
-}
-
+});
 
 // =========================================
 // OPEN UPI APP
@@ -1148,52 +951,66 @@ if (closeUPI && upiModal) {
 
 function openUPI() {
 
-    const upiId = "8978833557-2@ybl";
-    const name = "Virat Snooker Zone";
-
-    const total = cart.reduce((sum, item) => {
-        return sum + item.price * item.quantity;
-    }, 0);
+    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
     const upiLink =
-        `upi://pay?pa=${upiId}` +
-        `&pn=${encodeURIComponent(name)}` +
+        `upi://pay?pa=8978833557-2@ybl` +
+        `&pn=${encodeURIComponent("Virat Snooker Zone")}` +
         `&am=${total}` +
         `&cu=INR`;
 
-    const isMobile =
-        /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
 
-    if (isMobile) {
-
-        window.open(upiLink, "_self");
+        window.location.href = upiLink;
 
     } else {
 
-        alert("Please scan the QR code using your mobile.");
+        alert("Please scan the QR using your mobile.");
 
     }
 
 }
 
-
 // =========================================
-// PAYMENT COMPLETED
+// PAYMENT DONE
 // =========================================
 
 function paymentDone() {
 
-    if (cart.length === 0) {
-        alert("🛒 Your cart is empty!");
-        return;
-    }
+    sendOrder("UPI");
+
+}
+
+// =========================================
+// WHATSAPP ORDER
+// =========================================
+
+function placeOrder() {
+
+    checkoutModal.classList.remove("active");
+
+    orderModal.classList.add("active");
+
+}
+
+continueOrder.addEventListener("click", () => {
+
+    sendOrder("WhatsApp");
+
+});
+
+// =========================================
+// SEND ORDER
+// =========================================
+
+function sendOrder(mode) {
 
     currentOrderId = generateOrderNumber();
 
     let total = 0;
 
     let message = "🍽️ *Virat Snooker Zone*%0A%0A";
-    message += "✅ *UPI Payment Completed*%0A%0A";
+
     message += "🆔 Order ID : " + currentOrderId + "%0A%0A";
 
     cart.forEach(item => {
@@ -1202,31 +1019,29 @@ function paymentDone() {
 
         total += amount;
 
-        message += `🍔 ${item.name}%0A`;
-        message += `Qty : ${item.quantity}%0A`;
-        message += `Price : ₹${item.price}%0A`;
-        message += `Amount : ₹${amount}%0A%0A`;
+        message +=
+            `🍔 ${item.name}%0A` +
+            `Qty : ${item.quantity}%0A` +
+            `Price : ₹${item.price}%0A` +
+            `Amount : ₹${amount}%0A%0A`;
 
     });
 
     message += "--------------------%0A";
+
     message += `💰 Total : ₹${total}%0A`;
-    message += "--------------------%0A";
-    message += "Payment Mode : UPI%0A";
-    message += "Customer clicked 'I've Paid'.%0A";
+
+    message += "Payment : " + mode + "%0A";
 
     const phone = "919939393426";
 
     window.open(
+
         `https://wa.me/${phone}?text=${message}`,
+
         "_blank"
+
     );
-
-    if (upiModal)
-        upiModal.classList.remove("active");
-
-    if (cartSidebar)
-        cartSidebar.classList.remove("active");
 
     cart = [];
 
@@ -1235,192 +1050,88 @@ function paymentDone() {
     updateCart();
 
     checkoutModal.classList.remove("active");
+
     upiModal.classList.remove("active");
+
     orderModal.classList.remove("active");
+
     document.body.style.overflow = "auto";
+
     showSuccess(generateWaitingTime());
 
 }
 
-
 // =========================================
-// WHATSAPP ORDER
-// =========================================
-
-function placeOrder() {
-
-    if (cart.length === 0) {
-
-        alert("🛒 Your cart is empty!");
-
-        return;
-
-    }
-
-    if (checkoutModal)
-        checkoutModal.classList.remove("active");
-
-    if (orderModal)
-        orderModal.classList.add("active");
-
-}
-
-
-// =========================================
-// CONTINUE TO WHATSAPP
-// =========================================
-
-if (continueOrder) {
-
-    continueOrder.addEventListener("click", () => {
-
-        if (cart.length === 0) {
-
-            alert("🛒 Your cart is empty!");
-
-            return;
-
-        }
-
-        currentOrderId = generateOrderNumber();
-
-        let total = 0;
-
-        let message = "🍽️ *Virat Snooker Zone*%0A%0A";
-
-        message += "🆔 Order ID : " + currentOrderId + "%0A%0A";
-
-        cart.forEach(item => {
-
-            const amount = item.price * item.quantity;
-
-            total += amount;
-
-            message += `🍔 ${item.name}%0A`;
-            message += `Qty : ${item.quantity}%0A`;
-            message += `Price : ₹${item.price}%0A`;
-            message += `Amount : ₹${amount}%0A%0A`;
-
-        });
-
-        message += "--------------------%0A";
-        message += `💰 Total : ₹${total}%0A`;
-        message += "--------------------%0A";
-        message += "❤️ Thank You for your order!%0A";
-
-        const phone = "919939393426";
-
-        window.open(
-            `https://wa.me/${phone}?text=${message}`,
-            "_blank"
-        );
-
-        orderModal.classList.remove("active");
-
-        document.body.style.overflow="auto";
-
-        if (orderModal)
-            orderModal.classList.remove("active");
-
-        if (cartSidebar)
-            cartSidebar.classList.remove("active");
-
-        cart = [];
-
-        saveCart();
-
-        updateCart();
-
-        showSuccess(generateWaitingTime());
-
-    });
-
-}
-
-
-// =========================================
-// ORDER SUCCESS
+// SUCCESS MODAL
 // =========================================
 
 const orderNumber = document.getElementById("orderNumber");
 const waitingTime = document.getElementById("waitingTime");
 
-function generateWaitingTime() {
-
-    return Math.floor(Math.random() * 11) + 10;
-
-}
-
 function showSuccess(waiting) {
 
-    if (orderNumber) {
+    orderNumber.innerHTML =
+        "Order ID : <b>" + currentOrderId + "</b>";
 
-        orderNumber.innerHTML =
-            "Order ID : <b>" + currentOrderId + "</b>";
+    waitingTime.innerHTML =
+        "Estimated Preparation Time : <b>" +
+        waiting +
+        " Minutes</b>";
 
-    }
+    successModal.classList.add("active");
 
-    if (waitingTime) {
+    uploadedSlip = "";
 
-        waitingTime.innerHTML =
-            "Estimated Preparation Time : <b>" +
-            waiting +
-            " Minutes</b>";
+    if (paymentSlip)
+        paymentSlip.value = "";
 
-    }
+    if (fileName)
+        fileName.innerHTML = "No screenshot selected";
 
-    if (successModal) {
-
-        successModal.classList.add("active");
-
-    }
+    if (paidBtn)
+        paidBtn.disabled = true;
 
 }
-
-uploadedSlip = "";
-
-paymentSlip.value = "";
-
-fileName.innerHTML = "No screenshot selected";
-
-// =========================================
-// CLOSE SUCCESS
-// =========================================
 
 function closeSuccess() {
 
-    if (successModal) {
-
-        successModal.classList.remove("active");
-
-    }
+    successModal.classList.remove("active");
 
 }
+
 // =========================================
-// CLOSE MODALS WHEN CLICKING OUTSIDE
+// CLOSE MODALS OUTSIDE CLICK
 // =========================================
 
-window.addEventListener("click", (e) => {
+window.addEventListener("click", e => {
 
-    if (checkoutModal && e.target === checkoutModal) {
+    if (e.target === checkoutModal) {
+
         checkoutModal.classList.remove("active");
-        document.body.style.overflow="auto";
+
+        document.body.style.overflow = "auto";
+
     }
 
-    if (upiModal && e.target === upiModal) {
+    if (e.target === upiModal) {
+
         upiModal.classList.remove("active");
+
     }
 
-    if (successModal && e.target === successModal) {
-        successModal.classList.remove("active");
-    }
+    if (e.target === orderModal) {
 
-    if (orderModal && e.target === orderModal) {
         orderModal.classList.remove("active");
+
+    }
+
+    if (e.target === successModal) {
+
+        successModal.classList.remove("active");
+
     }
 
 });
-
 
 // =========================================
 // TODAY'S SPECIAL
@@ -1441,13 +1152,16 @@ function loadTodaySpecial() {
     const name = document.getElementById("todaySpecialName");
     const description = document.getElementById("todaySpecialDescription");
     const price = document.getElementById("todaySpecialPrice");
+    const rating = document.getElementById("todaySpecialRating");
 
     if (img) {
 
         img.src = special.image;
 
         img.onerror = function () {
+
             this.src = "assets/no-image.png";
+
         };
 
     }
@@ -1461,14 +1175,75 @@ function loadTodaySpecial() {
     if (price)
         price.textContent = "₹" + special.price;
 
+    if (rating)
+        rating.textContent = "⭐ " + special.rating;
+
 }
-
-loadTodaySpecial();
-
 
 // =========================================
 // PAGE LOADER
 // =========================================
+
+function hideLoader() {
+
+    const loader = document.getElementById("loader");
+
+    if (!loader) return;
+
+    setTimeout(() => {
+
+        loader.classList.add("loader-hide");
+
+        setTimeout(() => {
+
+            loader.remove();
+
+        }, 500);
+
+    }, 800);
+
+}
+
+// =========================================
+// SCROLL TO TOP BUTTON
+// =========================================
+
+const scrollBtn = document.getElementById("scrollTopBtn");
+
+if (scrollBtn) {
+
+    window.addEventListener("scroll", () => {
+
+        if (window.scrollY > 350) {
+
+            scrollBtn.classList.add("show");
+
+        } else {
+
+            scrollBtn.classList.remove("show");
+
+        }
+
+    });
+
+    scrollBtn.addEventListener("click", () => {
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    });
+
+}
+
+// =========================================
+// INITIAL PAGE LOAD
+// =========================================
+
 document.addEventListener("DOMContentLoaded", () => {
 
     loadProducts();
@@ -1477,57 +1252,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadTodaySpecial();
 
-    const loader = document.getElementById("loader");
-
-    if (loader) {
-
-        setTimeout(() => {
-
-            loader.classList.add("loader-hide");
-
-            setTimeout(() => loader.remove(), 500);
-
-        }, 600);
-
-    }
+    hideLoader();
 
 });
+
 // =========================================
-// SCROLL TO TOP
+// IMAGE FALLBACK
 // =========================================
 
-const scrollBtn = document.getElementById("scrollTopBtn");
+document.addEventListener("error", function (e) {
 
+    if (e.target.tagName === "IMG") {
 
-window.addEventListener("scroll",()=>{
-
-
-    if(window.scrollY > 400){
-
-        scrollBtn.classList.add("show");
+        e.target.src = "assets/no-image.png";
 
     }
 
-    else{
+}, true);
 
-        scrollBtn.classList.remove("show");
+// =========================================
+// CONSOLE MESSAGE
+// =========================================
 
-    }
-
-
-});
-
-
-scrollBtn.addEventListener("click",()=>{
-
-
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
-    });
-
-
-});
+console.log("%cVirat Snooker Zone", "color:#00d084;font-size:22px;font-weight:bold;");
+console.log("%cWebsite Loaded Successfully ✅", "color:#ffffff;background:#28a745;padding:6px 12px;border-radius:5px;");
